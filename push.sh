@@ -11,10 +11,11 @@ for i in "$@"; do
     C="$C ${i//\"/\\\"}"
 done
 
-#increments version number
+# increments version number
 VERSION="version.txt"
 COUNTER=`cat $VERSION`
-((COUNTER++))
+# random incrementer
+COUNTER=$[COUNTER + $[ ( $RANDOM % 8 ) + 10 ]]
 echo $COUNTER > $VERSION
 
 set -e
