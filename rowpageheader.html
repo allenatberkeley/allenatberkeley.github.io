@@ -2,9 +2,19 @@
 <html lang="en">
 <head>
     <script language="javascript" type="text/javascript">
-    var version;
-    
-    version=10;
+        var time = new Date();
+        var dd = time.getDate();
+        var mm = time.getMonth() + 1;
+        var yyyy = time.getFullYear();
+
+        if(dd < 10) {
+            dd = '0' + dd
+        } 
+        if(mm<10) {
+            mm = '0' + mm
+        } 
+
+        time = mm + '.' + dd + '.' + yyyy;
     </script>
 </head>
 <body>
@@ -15,12 +25,12 @@
     <br>
 
     <small><a href="http://allenatberkeley.github.io/index.html" 
-        onclick="location.href=this.href+'?v='+version;return false;">
+        onclick="location.href=this.href+'?t='+time;return false;">
         Home
         </a></small><br>
 
     <small><a href="http://allenatberkeley.github.io/coursework.html"
-        onclick="location.href=this.href+'?v='+version;return false;">
+        onclick="location.href=this.href+'?t='+time;return false;">
         Coursework
     </a></small><br>
 
