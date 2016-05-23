@@ -12,7 +12,7 @@ for i in "$@"; do
 done
 
 #increments version number
-VERSION="version.txt"
+VERSION="version"
 count=cat $VERSION
 ((count++))
 echo $count > $VERSION
