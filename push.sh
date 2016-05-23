@@ -13,8 +13,7 @@ done
 
 #increments version number
 VERSION="version.txt"
-COUNTER='cat $VERSION'
-echo $COUNTER
+COUNTER=`cat $VERSION`
 ((COUNTER++))
 echo $COUNTER > $VERSION
 
