@@ -15,7 +15,8 @@
         } 
 
         var date = mm + dd + yyyy;
-        var tag = time.getTime() % date;
+        var factor = 60000;
+        var tag = Math.floor(time.getTime() / factor) % date;
     </script>
 </head>
 <body>
