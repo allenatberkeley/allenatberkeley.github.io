@@ -14,8 +14,9 @@ done
 # increments version number
 VERSION="version.txt"
 COUNTER=`cat $VERSION`
+COUNTER=$[COUNTER + 1]
 # random incrementer
-COUNTER=$[COUNTER + $[ ( $RANDOM % 8 ) + 10 ]]
+#COUNTER=$[COUNTER + $[ ( $RANDOM % 8 ) + 10 ]]
 echo $COUNTER > $VERSION
 
 set -e
