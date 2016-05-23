@@ -13,9 +13,9 @@ done
 
 #increments version number
 VERSION="version"
-count=cat $VERSION
-((count++))
-echo $count > $VERSION
+COUNTER=cat $VERSION
+((COUNTER++))
+echo $COUNTER > $VERSION
 
 set -e
 # adds --all
