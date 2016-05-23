@@ -1,5 +1,6 @@
 # pushes to "origin master"
-# you might need to modify that ^ on line 19
+# you might need to modify that ^ on line 20
+# adds -all
 if [[ $# -eq 0 ]] ; then
     echo 'Pass in a message for the commit!:'
     echo 'Ex) -- (No Quotes Needed)'
@@ -13,7 +14,7 @@ for i in "$@"; do
 done
 
 set -e
-git add -u
+git add --all
 # git status
 git commit -m "$C"
 git push origin HEAD:master
