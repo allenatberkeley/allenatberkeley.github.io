@@ -20,19 +20,30 @@
     <!-- BLUE DUCK! -->
     <link rel="icon" type="image/png" sizes="32x32" href="https://cs184team.github.io/cs184-final/favicon.ico">
 
-    <!-- Row Page Header -->
+    <!-- Page Header -->
     <script> 
     $(function(){
-      $("#rowpageheader").load("rowpageheader.html"); 
+      $("#pageheader").load("pageheader.html"); 
+    });
+    </script>
+
+    <!-- Page Footer -->
+    <script> 
+    $(function(){
+      $("#pagefooter").load("pagefooter.html"); 
     });
     </script>
 </head>
 
 <body>
 <div class="container">
-    <div id="rowpageheader"></div>
+    <div id="pageheader"></div>
+    <br>
 
     <h3><a href="https://cs184team.github.io/cs184-final/writeup.html">Point Cloud to Mesh, Ball-Pivoting Algorithm</a></h3>
+
+    
+    <div id="pagefooter"></div>
 </div>
 </body>
 </html>

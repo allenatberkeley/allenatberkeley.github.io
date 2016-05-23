@@ -20,18 +20,26 @@
     <!-- BLUE DUCK! -->
     <link rel="icon" type="image/png" sizes="32x32" href="https://cs184team.github.io/cs184-final/favicon.ico">
 
-    <!-- Row Page Header -->
+    <!-- Page Header -->
     <script> 
     $(function(){
-      $("#rowpageheader").load("rowpageheader.html"); 
+      $("#pageheader").load("pageheader.html"); 
+    });
+    </script>
+
+    <!-- Page Footer -->
+    <script> 
+    $(function(){
+      $("#pagefooter").load("pagefooter.html"); 
     });
     </script>
 </head>
 
 <body>
 <div class="container">
-    <div id="rowpageheader"></div>
+    <div id="pageheader"></div>
     <br>
+
     <h3><a href="http://allenatberkeley.github.io/coursework.html"
         onclick="location.href=this.href+'?t='+tag;return false;">
         Major-Related Coursework
@@ -277,6 +285,8 @@
     </div>
     <br>
 
+    
+    <div id="pagefooter"></div>
 </div>
 </body>
 </html>
