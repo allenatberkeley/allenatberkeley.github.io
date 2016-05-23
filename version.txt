@@ -1,1 +1,1 @@
-cat $VERSION
+10
