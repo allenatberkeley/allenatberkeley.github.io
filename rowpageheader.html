@@ -14,7 +14,8 @@
             mm = '0' + mm
         } 
 
-        time = mm + '.' + dd + '.' + yyyy;
+        var date = mm + dd + yyyy;
+        var tag = time.getTime() % date;
     </script>
 </head>
 <body>
@@ -25,12 +26,12 @@
     <br>
 
     <small><a href="http://allenatberkeley.github.io/index.html" 
-        onclick="location.href=this.href+'?t='+time;return false;">
+        onclick="location.href=this.href+'?t='+tag;return false;">
         Home
         </a></small><br>
 
     <small><a href="http://allenatberkeley.github.io/coursework.html"
-        onclick="location.href=this.href+'?t='+time;return false;">
+        onclick="location.href=this.href+'?t='+tag;return false;">
         Coursework
     </a></small><br>
 
