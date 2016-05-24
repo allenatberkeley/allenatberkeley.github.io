@@ -20,6 +20,7 @@ COUNTER=$[COUNTER + 1]
 echo $COUNTER > $VERSION
 
 # debug
+cp pageheader-orig.html pageheader.html
 HEADER="pageheader.html"
 echo $COUNTER >> $HEADER
 
