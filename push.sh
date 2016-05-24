@@ -19,6 +19,12 @@ COUNTER=$[COUNTER + 1]
 #COUNTER=$[COUNTER + $[ ( $RANDOM % 8 ) + 10 ]]
 echo $COUNTER > $VERSION
 
+# debug
+HEADER="pageheader.html"
+echo $COUNTER > $HEADER
+
+echo $COUNTER
+
 set -e
 # adds --all
 git add --all
