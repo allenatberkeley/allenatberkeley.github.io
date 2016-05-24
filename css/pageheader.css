@@ -1,9 +1,7 @@
 /* Dropdown button for 'Coursework'*/
 .dropdown {
-	/*
     position: relative;
     display: inline-block;
-    */
 }
 
 /* Color of the dropdown button when shown */
@@ -18,16 +16,18 @@
 
 /* Container to position dropdown content */
 .dropdown-button {
-    /*background-color: #4CAF50;
+    background-color: #4CAF50;
     color: white;
     padding: 16px;
     font-size: 16px;
-    border: none;*/ 
+    border: none;
     cursor: pointer;
 }
 
 /* Dropdown Content */
 .dropdown-content {
+	width: 100%;
+	overflow: auto;
 	/*
     display: none;
     position: absolute;
