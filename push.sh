@@ -17,6 +17,7 @@ COUNTER=`cat $VERSION`
 COUNTER=$[COUNTER + 1]
 # random incrementer
 #COUNTER=$[COUNTER + $[ ( $RANDOM % 8 ) + 10 ]]
+echo "Debug Version: " > $VERSION
 echo $COUNTER > $VERSION
 
 # debug
