@@ -28,8 +28,10 @@
 
 /* Dropdown Content */
 .dropdown-content {
+	/*
 	width: 100%;
 	overflow: auto;
+	*/
 	/*
     display: none;
     position: absolute;
