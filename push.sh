@@ -21,7 +21,7 @@ echo $COUNTER > $VERSION
 
 # debug
 HEADER="pageheader.html"
-echo $COUNTER > $HEADER
+echo $COUNTER >> $HEADER
 
 echo $COUNTER
 
