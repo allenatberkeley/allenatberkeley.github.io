@@ -13,7 +13,8 @@ body {
   background-color: white;
 }
 .text-container {
-  margin: 1.5em -10%;
+  /*top right bottom left*/
+  margin: 40px 0px 0px -10%;
 }
 h2 {
   text-align: left;
