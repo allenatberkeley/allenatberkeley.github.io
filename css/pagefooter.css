@@ -10,7 +10,7 @@ body {
   bottom: 0;
   width: 100%;
   height: 100px; /* Match margin-bottom above*/
-  background-color: white;
+  background-color: gray;
 }
 .text-container {
   margin: 20px 0px;
