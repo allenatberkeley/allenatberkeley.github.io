@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!--
     <script language="javascript" type="text/javascript">
         var time = new Date();
         var dd = time.getDate();
@@ -17,7 +18,7 @@
         var date = mm + dd + yyyy;
         var factor = 6000;
         // var tag = Math.floor(time.getTime() / factor) % date;
-    </script>
+    </script>-->
 
     <script>
         // Force all 'link' tags' href to append a time
@@ -32,7 +33,8 @@
     <script>
         // Make all 'a' tags' onlick to append a time to the href of 'a'
         $('a').attr('onclick', function() {
-            return this.onclick + " var tag = Math.floor((new Date()).getTime() / factor) % date; location.href=this.href+'?t='+tag; return false;"
+            return this.onclick + " var tag = (new Date()).getTime(); location.href=this.href+'?t='+tag; return false;"
+            //" var tag = Math.floor((new Date()).getTime() / factor) % date; location.href=this.href+'?t='+tag; return false;"
         });
     </script>    
 
@@ -101,4 +103,4 @@
     </h1>
 </div>
 </body>Debug Version: 
-102
+103
