@@ -1,11 +1,13 @@
 /* Dropdown button for 'Coursework'*/
 .dropdown {
+	width: 100%;
     position: relative;
     display: inline-block;
 }
 
 /* Container to position dropdown content */
 .dropdown-button {
+	width: 100%;
 	background-color: white;
     /*color: green;
     padding: 16px;
