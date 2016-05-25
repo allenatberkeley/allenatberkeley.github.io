@@ -3,14 +3,14 @@ html {
   min-height: 100%;
 }
 body {
-  margin-bottom: 3em;
+  margin-bottom: 4em;
 }
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 3em;
-  background-color: white;
+  height: 4em;
+  background-color: gray;
 }
 /*
 .container {
@@ -18,6 +18,6 @@ body {
 }
 */
 h2 {
-  text-indent: 1.5em;
+  text-indent: 1em;
   text-align: left;
 }
