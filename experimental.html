@@ -29,6 +29,14 @@
     });
     </script>
 
+    <script>
+        // Force all 'link' tags' href to append a time
+        // Thereby forcing refresh during debugging
+        $('link').attr('href', function() {
+            return this.href + '?t=' + 
+                (Math.floor((new Date()).getTime()));
+        });
+    </script>
     <link rel="stylesheet" type="text/css" href="http://allenatberkeley.github.io/experimental.css">
 
 </head>
@@ -57,7 +65,7 @@
     Spring JS test
     Circle:
     <div id="circle">blah1</div>
-    <div id="#circle">blah2</div>
+    <div id="circle">blah2</div>
     
     
 
