@@ -34,6 +34,7 @@
 /* Show dropdown content on hover over dropdown button */
 .dropdown:hover .dropdown-content {
 	display: block;
+	background-color: white;
 }
 
 /* Attributes of links inside dropdown content */
