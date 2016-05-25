@@ -10,10 +10,10 @@ body {
   bottom: 0;
   width: 100%;
   height: 100px; /* Match margin-bottom above*/
-  background-color: gray;
+  background-color: white;
 }
 .text-container {
-  margin: 1em -10%;
+  margin: 1.5em -10%;
 }
 h2 {
   text-align: left;
