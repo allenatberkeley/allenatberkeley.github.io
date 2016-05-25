@@ -4,19 +4,12 @@ http://stackoverflow.com/questions/21324395/bootstrap-3-flush-footer-to-bottom-n
 
 /* Sticky footer styles
 -------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
-}
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
 .footer {
+  /*
   position: absolute;
   bottom: 0;
+  */
   width: 100%;
-  /* Set the fixed height of the footer here */
   height: 60px;
   background-color: #cccccc;
 }
