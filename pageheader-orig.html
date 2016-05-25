@@ -15,7 +15,7 @@
         } 
 
         var date = mm + dd + yyyy;
-        var factor = 60000;
+        var factor = 6000;
         // var tag = Math.floor(time.getTime() / factor) % date;
     </script>
 
@@ -24,7 +24,7 @@
         // Thereby forcing refresh during debugging
         $('link').attr('href', function() {
             return this.href + '?t=' + 
-                (Math.floor((new Date()).getTime() / factor) % date);
+                (Math.floor((new Date()).getTime()));
         });
     </script>
     <link rel="stylesheet" type="text/css" href="http://allenatberkeley.github.io/css/pageheader.css">
