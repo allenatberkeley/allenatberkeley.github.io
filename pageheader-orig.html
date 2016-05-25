@@ -20,6 +20,8 @@
     </script>
 
     <script>
+        // Force all 'link' tags' href to append a time
+        // Thereby forcing refresh during debugging
         $('link').attr('href', function() {
             return this.href + '?t=' + 
                 (Math.floor((new Date()).getTime() / factor) % date);
