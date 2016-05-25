@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="http://allenatberkeley.github.io/experimental.css">
+    <script>
+        // Force all 'link' tags' href to append a time
+        // Thereby forcing refresh during debugging
+        $('link').attr('href', function() {
+            return this.href + '?t=' + 
+                (Math.floor((new Date()).getTime()));
+        });
+    </script>
+    <link rel="stylesheet" type="text/css" href="http://allenatberkeley.github.io/css/pagefooter.css">
 </head>
 <body>
     <footer class="footer">
-    <h2>:D</h2>
+    	<div class="container">
+    		<h2>:D</h2>
+    	</div>
     </footer>
 </div>
 </body>
