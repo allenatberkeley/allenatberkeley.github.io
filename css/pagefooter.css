@@ -3,14 +3,14 @@ html {
   min-height: 100%;
 }
 body {
-  margin-bottom: 3em; /* Match height below */
+  margin-bottom: 100px; /* Match height below */
 }
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 3em; /* Match margin-bottom above*/
-  background-color: gray;
+  height: 100px; /* Match margin-bottom above*/
+  background-color: white;
 }
 .text-container {
   margin: 20px 10px;
