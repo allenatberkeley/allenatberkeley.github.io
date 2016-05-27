@@ -41,7 +41,8 @@
 
     <script src="dynamics.min.js"></script>
     <script>
-        var spring = document.getElementByClassName("spring")
+    (function() {
+        var spring = document.getElementByClassName("spring");
         dynamics.animate(spring, {
             translateX: 350
             translateY: 350
@@ -50,7 +51,8 @@
             duration: 2000,
             frequency: 175,
             friction: 200
-        })
+        });
+    }}.call(this);
     </script>
 
 </head>
@@ -78,12 +80,12 @@
     <p>
     Spring JS test
     Circle:</p>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <div class="spring">
         <svg height="100" width="100">
             <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
         </svg>
     </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     
     
 
