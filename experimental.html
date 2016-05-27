@@ -42,7 +42,7 @@
     <script src="dynamics.min.js"></script>
     <script>
     function spring() {
-        var spring = document.getElementByClassName("spring");
+        var spring = document.getElementById("spring");
         dynamics.animate(spring, {
             translateX: 350
             translateY: 350
@@ -82,7 +82,7 @@
     Spring JS test
     Circle:</p>
     <button onclick="spring()">Click!</button>
-    <div class="spring">
+    <div class="spring" id="spring">
         <svg height="100" width="100">
             <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
         </svg>
