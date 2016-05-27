@@ -39,6 +39,20 @@
     </script>
     <link rel="stylesheet" type="text/css" href="http://allenatberkeley.github.io/experimental.css">
 
+    <script src="dynamics.js"></script>
+    <script>
+        var spring = document.getElementByClassName("spring")
+        dynamics.animate(spring, {
+            translateX: 350
+            translateY: 350
+        }, {
+            type: dynamics.spring,
+            duration: 2000,
+            frequency: 175,
+            friction: 200
+        })
+    </script>
+
 </head>
 
 <body>
