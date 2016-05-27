@@ -22,7 +22,7 @@ echo $COUNTER > $VERSION
 # debug
 cp pageheader-orig.html pageheader.html
 HEADER="pageheader.html"
-echo "Debug Version: " >> $HEADER
+echo "Debug Version: 1." >> $HEADER
 echo $COUNTER >> $HEADER
 
 echo $COUNTER
