@@ -9,6 +9,16 @@ function verticalSpring() {
         duration: 2000,
         frequency: 150,
         friction: 200,
+        delay: 100
+    })
+
+    dynamics.animate(ball, {
+        translateY: -100
+    }, {
+        type: dynamics.spring,
+        duration: 500,
+        frequency: 300,
+        friction: 200,
         delay: 100,
         complete: verticalSpring
     })
