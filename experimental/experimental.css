@@ -7,7 +7,6 @@
 }
 .pin, svg {
 	/* Rotate at middle bottom */
-	position: absolute;
 	-webkit-transform-origin: center bottom;
 	-moz-transform-origin: center bottom;
 	transform-origin: center bottom;
