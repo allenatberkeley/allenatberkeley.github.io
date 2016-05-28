@@ -10,7 +10,7 @@
 	position: absolute;
 	-webkit-transform-origin: center bottom;
 	-moz-transform-origin: center bottom;
-	transform-origin: 50% 100%;
+	transform-origin: center bottom;
 }
 
 .ball {
