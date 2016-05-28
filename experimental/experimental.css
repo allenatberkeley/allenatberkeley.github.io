@@ -8,9 +8,9 @@
 .pin, svg {
 	/* Rotate at middle bottom */
 	position: absolute;
-	-webkit-transform-origin: center top;
-	-moz-transform-origin: center top;
-	transform-origin: center top;
+	-webkit-transform-origin: center bottom;
+	-moz-transform-origin: center bottom;
+	transform-origin: center bottom;
 }
 
 .ball {
