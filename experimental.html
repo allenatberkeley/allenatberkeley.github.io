@@ -37,86 +37,73 @@
                 (Math.floor((new Date()).getTime()));
         });
     </script>
-    <link rel="stylesheet" type="text/css" href="experimental.css">
+
+    <link rel="stylesheet" type="text/css" href="css/experimental.css">
 
     <script src="dynamics.min.js"></script>
-    <script>
-    var spring = document.querySelector('.spring');
-    function verticalBounce() {
-        // Vertical Bounce: Shrink Down
-        dynamics.animate(spring, {
-            scaleY: 0.8
-        }, {
-            type: dynamics.bounce,
-            duration: 800,
-            bounciness: 0
-        });
-
-        // Vertical Bounce: Bounce + Delay
-        dynamics.animate(pin, {
-            translateY: -60
-        }, {
-            type: dynamics.forceWithGravity,
-            bounciness: 0,
-            duration: 500,
-            delay: 150
-        });
-
-        dynamics.animate(svg, {
-            scaleY: 0.8
-        }, {
-            type: dynamics.bounce,
-            duration: 800,
-            bounciness: 600,
-            delay: 650,
-            complete: verticalBounce
-        });
-    }
-    verticalBounce();
-    </script>
-
 </head>
-
 <body>
 <div class="container">
     <div id="pageheader"></div>
-    <h3>To-do list:</h3>
-    <h4><ul>
-        <li>
-            Need to speed up page loading! >> Math Styling Removed.
-        </li>
-        <li>
-            Need to AJAXify the site!
-        </li>
-        <li>
-            Make footer work correctly, aka figure out the CSS stuff. >> Done!
-        </li>
-        <li>
-            Add more Bio stuff.
-        </li>
-        <li>
-            Cover?
-        </li>
-    </ul></h4>
 
-    <h5>Test:</h5>
-    <p>
-    Spring JS test
-    <br>
-    Circle:
-    </p>
-    <!--<button onclick="spring()">Click!</button>-->
-    <br><br><br>
-    <div class="test">
-        <svg id="spring" height="100" width="100">
-            <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
+    <div class="pin">
+        <svg width="76" height="107" viewBox="0 0 76 107" xmlns="http://www.w3.org/2000/svg">
+            <path d="M38 106.7c2.4 0 37.7-43 37.8-68.8 0-21-17-38-38-38C17 0 0 17 0 38c.4 27 35.4 68.7 38 68.7z" fill="#EC1A0A"/>
+            <ellipse fill="#FFF" cx="38.1" cy="38.1" rx="23.1" ry="23.1"/>
         </svg>
     </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br>
-    
-    
 
+    <script id="bounce">
+        var pin = document.querySelector('.pin')
+        var svg = document.querySelector('.pin svg')
+
+        function horizontalBounce() {
+        // The bounce animation will return to the original state
+        // In this case, it will go from 0deg to -45deg to 0deg
+            dynamics.animate(pin, {
+                rotateZ: -45
+            }, {
+                type: dynamics.bounce,
+                duration: 1800,
+                complete: verticalBounce
+            })
+        }
+
+        function verticalBounce() {
+        // We animate the two elements (svg, pin) independently
+            dynamics.animate(svg, {
+                scaleY: 0.8
+            }, {
+                type: dynamics.bounce,
+                duration: 800,
+                bounciness: 0
+            })
+
+            // Use the delay option to delay your animations
+            dynamics.animate(pin, {
+                translateY: -60
+            }, {
+                type: dynamics.forceWithGravity,
+                bounciness: 0,
+                duration: 500,
+                delay: 150
+            })
+
+            dynamics.animate(svg, {
+                scaleY: 0.8
+            }, {
+                type: dynamics.bounce,
+                duration: 800,
+                bounciness: 600,
+                delay: 650,
+                complete: horizontalBounce
+            })
+        }
+
+        // Start the horizontal bounce first!
+        horizontalBounce()
+    </script>
+    
     <div id="pagefooter"></div>
 </div>
 </body>
-</html>
