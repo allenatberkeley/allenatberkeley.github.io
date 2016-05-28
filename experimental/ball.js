@@ -1,11 +1,19 @@
 var ball = document.querySelector('.ball')
 var svg = document.querySelector('.ball svg')
 
-function verticalBounce() {
-    
+function verticalSpring() {
+    dynamics.animate(pin, {
+        translateY: 100
+    }, {
+        type: dynamics.spring,
+        duration: 2000,
+        frequency: 150,
+        friction: 200,
+        delay: 100
+    })
 }
 
-verticalBounce()
+verticalSpring()
 
 // function horizontalBounce() {
 // // The bounce animation will return to the original state
