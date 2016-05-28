@@ -3,7 +3,7 @@ var ball = document.querySelector('.ball')
 
 function verticalSpringDown() {
     dynamics.animate(ball, {
-        translateY: 80
+        translateY: 100
     }, {
         type: dynamics.spring,
         duration: 2000,
@@ -16,11 +16,11 @@ function verticalSpringDown() {
 
 function verticalSpringUp() {
     dynamics.animate(ball, {
-        translateY: -80
+        translateY: -100
     }, {
         type: dynamics.spring,
-        duration: 500,
-        frequency: 300,
+        duration: 1200,
+        frequency: 600,
         friction: 200,
         delay: 100,
         complete: verticalSpringDown
