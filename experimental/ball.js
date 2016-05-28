@@ -1,5 +1,5 @@
 var ball = document.querySelector('.ball')
-var svg = document.querySelector('.ball svg')
+//var svg = document.querySelector('.ball svg')
 
 function verticalSpring() {
     dynamics.animate(ball, {
