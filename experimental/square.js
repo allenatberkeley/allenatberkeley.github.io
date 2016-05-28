@@ -12,6 +12,8 @@ function squareBounce() {
     });
 };
 
+squareBounce()
+
 // function verticalSpringUp() {
 //     dynamics.animate(square, {
 //         translateY: -100
