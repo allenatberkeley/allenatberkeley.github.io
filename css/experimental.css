@@ -1,5 +1,5 @@
 .pin {
-  position: absolute;
+  position: relative;
   left: 50%;
   top: 50%;
   margin-left: -38px;
