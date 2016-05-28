@@ -2,7 +2,7 @@ var ball = document.querySelector('.ball')
 var svg = document.querySelector('.ball svg')
 
 function verticalSpring() {
-    dynamics.animate(pin, {
+    dynamics.animate(ball, {
         translateY: 100
     }, {
         type: dynamics.spring,
