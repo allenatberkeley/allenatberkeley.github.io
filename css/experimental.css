@@ -1,13 +1,12 @@
 .pin {
-  position: relative;
-  left: 50%;
-  top: 50%;
-  margin-left: -38px;
-  margin-top: -53px;
+	position: absolute;
+	left: 50%;
+	top: 75%;
+	margin-left: -38px;
+	margin-top: -53px;
 }
 .pin, svg {
-  position: absolute;
-  -webkit-transform-origin: 50% 100%;
-  -moz-transform-origin: 50% 100%;
-  transform-origin: 50% 50%;
+	-webkit-transform-origin: 50% 100%;
+	-moz-transform-origin: 50% 100%;
+	transform-origin: 50% 50%;
 }
