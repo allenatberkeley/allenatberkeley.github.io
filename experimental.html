@@ -41,19 +41,38 @@
 
     <script src="dynamics.min.js"></script>
     <script>
-    function spring() {
-        var spring = document.getElementById("spring");
+    var spring = document.querySelector('.spring');
+    function verticalBounce() {
+        // Vertical Bounce: Shrink Down
         dynamics.animate(spring, {
-            translateX: 350
-            translateY: 350
+            scaleY: 0.8
         }, {
-            type: dynamics.spring,
-            duration: 2000,
-            frequency: 175,
-            friction: 200
+            type: dynamics.bounce,
+            duration: 800,
+            bounciness: 0
         });
-        return this;
+
+        // Vertical Bounce: Bounce + Delay
+        dynamics.animate(pin, {
+            translateY: -60
+        }, {
+            type: dynamics.forceWithGravity,
+            bounciness: 0,
+            duration: 500,
+            delay: 150
+        });
+
+        dynamics.animate(svg, {
+            scaleY: 0.8
+        }, {
+            type: dynamics.bounce,
+            duration: 800,
+            bounciness: 600,
+            delay: 650,
+            complete: verticalBounce
+        });
     }
+    verticalBounce();
     </script>
 
 </head>
