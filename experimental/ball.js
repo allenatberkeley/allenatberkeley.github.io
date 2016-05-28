@@ -9,7 +9,8 @@ function verticalSpring() {
         duration: 2000,
         frequency: 150,
         friction: 200,
-        delay: 100
+        delay: 100,
+        complete: verticalSpring
     })
 }
 
