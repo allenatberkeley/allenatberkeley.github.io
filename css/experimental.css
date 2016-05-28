@@ -6,7 +6,8 @@
 	margin-top: -53px;
 }
 .pin, svg {
+	/* Rotate at middle bottom */
 	-webkit-transform-origin: 50% 100%;
 	-moz-transform-origin: 50% 100%;
-	transform-origin: 50% 50%;
+	transform-origin: 50% 100%;
 }
