@@ -1,7 +1,6 @@
 var square = document.querySelector('.square')
-//var svg = document.querySelector('.square svg')
 
-// function squareBounce() {
+// window.onscroll = function() {
 //     dynamics.animate(square, {
 //         translateY: 100
 //     }, {
@@ -12,9 +11,10 @@ var square = document.querySelector('.square')
 //     });
 // };
 
-// squareBounce()
+var scroll_pos = 0;
+var ticking = false;
 
-window.onscroll = function() {
+function squareBounce(scroll_pos) {
     dynamics.animate(square, {
         translateY: 100
     }, {
@@ -25,17 +25,13 @@ window.onscroll = function() {
     });
 };
 
-// function verticalSpringUp() {
-//     dynamics.animate(square, {
-//         translateY: -100
-//     }, {
-//         type: dynamics.spring,
-//         duration: 1200,
-//         frequency: 600,
-//         friction: 200,
-//         delay: 100,
-//         complete: verticalSpringDown
-//     })
-// }
-
-// verticalSpringDown()
+window.addEventListener('scroll', function(e) {
+  scroll_pos = window.scrollY;
+  if (!ticking) {
+    window.requestAnimationFrame(function() {
+      squareBounce(scroll_pos);
+      ticking = false;
+    });
+  }
+  ticking = true;
+});
