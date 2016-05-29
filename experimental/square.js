@@ -1,7 +1,20 @@
 var square = document.querySelector('.square')
 //var svg = document.querySelector('.square svg')
 
-function squareBounce() {
+// function squareBounce() {
+//     dynamics.animate(square, {
+//         translateY: 100
+//     }, {
+//         type: dynamics.bounce,
+//         duration: 1700,
+//         frequency: 42,
+//         friction: 100,
+//     });
+// };
+
+// squareBounce()
+
+window.onscroll = function() {
     dynamics.animate(square, {
         translateY: 100
     }, {
@@ -11,8 +24,6 @@ function squareBounce() {
         friction: 100,
     });
 };
-
-squareBounce()
 
 // function verticalSpringUp() {
 //     dynamics.animate(square, {
