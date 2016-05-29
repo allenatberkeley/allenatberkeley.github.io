@@ -22,7 +22,7 @@
 }
 
 .square {
-	position: relative;
+	position: absolute;
 	left: 75%;
 	/*top: 75%;*/
 	margin-left: -38px;
