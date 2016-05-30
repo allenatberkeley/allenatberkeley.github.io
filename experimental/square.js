@@ -23,7 +23,7 @@ function squareBounce(scroll_pos) {
     }
 
     dynamics.animate(square, {
-        translateY: 100
+        translateY: y_val
     }, {
         type: dynamics.bounce,
         duration: 1700,
