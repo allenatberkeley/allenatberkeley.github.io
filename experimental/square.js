@@ -16,7 +16,7 @@ var prev_pos = 0;
 var ticking = false;
 
 function squareBounce(scroll_pos) {
-    var y_val = 100;
+    // var y_val = 100;
 
     // if (scroll_pos < prev_pos) {
     //     y_val *= -1;
