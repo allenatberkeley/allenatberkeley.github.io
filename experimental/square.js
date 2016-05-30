@@ -16,6 +16,10 @@ var prev_pos = 0;
 var ticking = false;
 
 function squareBounce(scroll_pos) {
+
+    document.write(scroll_pos);
+    document.write(prev_pos);
+
     var y_val = 100;
 
     if (scroll_pos < prev_pos) {
