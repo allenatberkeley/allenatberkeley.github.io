@@ -22,6 +22,8 @@ function squareBounce(scroll_pos) {
         y_val *= -1;
     }
 
+    prev_pos = scroll_pos;
+
     dynamics.animate(square, {
         translateY: y_val
     }, {
