@@ -1,6 +1,6 @@
 // http://dynamicsjs.com/examples/pin.html
 var pin = document.querySelector('.pin')
-var svg = document.querySelector('.pin svg')
+var pin_svg = document.querySelector('.pin svg')
 
 function horizontalBounce() {
 // The bounce animation will return to the original state
@@ -15,8 +15,8 @@ function horizontalBounce() {
 }
 
 function verticalBounce() {
-// We animate the two elements (svg, pin) independently
-    dynamics.animate(svg, {
+// We animate the two elements (pin_svg, pin) independently
+    dynamics.animate(pin_svg, {
         scaleY: 0.8
     }, {
         type: dynamics.bounce,
@@ -34,7 +34,7 @@ function verticalBounce() {
         delay: 150
     })
 
-    dynamics.animate(svg, {
+    dynamics.animate(pin_svg, {
         scaleY: 0.8
     }, {
         type: dynamics.bounce,

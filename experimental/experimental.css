@@ -28,3 +28,8 @@
 	margin-left: -38px;
 	margin-top: -53px;
 }
+
+.leaf {
+	position: absolute;
+	left: 10%;
+}
