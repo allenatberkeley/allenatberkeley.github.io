@@ -17,8 +17,8 @@ var ticking = false;
 
 function squareBounce(scroll_pos) {
 
-    document.write(scroll_pos);
-    document.write(prev_pos);
+    console.log(scroll_pos);
+    console.log(prev_pos);
 
     var y_val = 100;
 
