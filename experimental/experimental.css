@@ -30,7 +30,6 @@
 }
 
 .leaf {
-	position: absolute;
-	top: 50%;
+	position: relative;
 	left: 10%;
 }
