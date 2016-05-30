@@ -50,7 +50,9 @@ window.addEventListener('scroll', function(e) {
   ticking = true;
 });
 
+/* SQUARE EXAMPLE FIX */
 var square = document.querySelector('.square')
+var prev_posS = 0;
 function squareBounce(scroll_pos) {
 
     // console.log("scroll: " + scroll_pos);
@@ -58,7 +60,7 @@ function squareBounce(scroll_pos) {
 
     var y_val = 100;
 
-    if (scroll_pos < prev_pos) {
+    if (scroll_pos < prev_posS) {
         y_val *= -1;
     }
 
@@ -71,5 +73,5 @@ function squareBounce(scroll_pos) {
         friction: 100
     });
 
-    prev_pos = scroll_pos;
+    prev_posS = scroll_pos;
 };
