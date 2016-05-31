@@ -1,36 +1,39 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<style>  
-    div.padded {  
-      padding-top: 0px;  
-      padding-right: 100px;  
-      padding-bottom: 0.25in;  
-      padding-left: 100px;  
-    }  
-  </style> 
-<title>Allen Zeng 25677112  |  CS 184-dj</title>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+    <title>CS184 | Project 2</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+    <!--BLUE DUCK!-->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/duck.ico">
 </head>
 <body>
 <br />
 <h1 align="middle">Assignment 2: GeoMenagerie</h1>
-    <h2 align="middle">Allen Zeng 25677112  |  CS 184-dj</h2>
 
     <div class="padded">
 
     <h2 align="middle">Part 1: Fun with Bezier Patches</h2>
-        <p>In part 1, I pre-processed matrix of Berstein polynomial coefficients for use in BezierPatch::evaluate(...). My reasoning for this was that in evaluating the Bezier patch, a pre-processed matrix will multiply out more efficiently than recursively calling De Casteljau's algorithm. (And, it's slightly less complex to implement!) Then, inside evaluate(...), I calculated the variable vectors <em>uVect</em> and <em>vVect</em> of the Berstein polynomial, and dotted those vectors with the coefficient matrix to get the actual Berstein polynomials, <em>ut</em> and <em>uv</em>. The u-directional polynomial then multiplies with the 4 sets of 4 u-oriented control points of the Bezier Patch to interpolate for a set of 4 v-oriented "secondary" control points. Finally, the v-directional polynomial is multiplied with the secondary control points, returning the 3D point at <em>(u,v)</em> on the Bezier patch.</p>
+        <p>In part 1, I pre-processed matrix of Berstein polynomial coefficients for use in <code>BezierPatch::evaluate(...)</code>. My reasoning for this was that in evaluating the Bezier patch, a pre-processed matrix will multiply out more efficiently than recursively calling De Casteljau's algorithm. (And, it's slightly less complex to implement!) Then, inside <code>evaluate(...)</code>, I calculated the variable vectors <em>uVect</em> and <em>vVect</em> of the Berstein polynomial, and dotted those vectors with the coefficient matrix to get the actual Berstein polynomials, <em>ut</em> and <em>uv</em>. The u-directional polynomial then multiplies with the 4 sets of 4 u-oriented control points of the Bezier Patch to interpolate for a set of 4 v-oriented "secondary" control points. Finally, the v-directional polynomial is multiplied with the secondary control points, returning the 3D point at <em>(u,v)</em> on the Bezier patch.</p>
 
-        <p>In add2mesh(...), I evaluate a Bezier Patch and tesselate the patch uniformly on to an 8x8 grid with 128 triangles. I iterate integer-wise (to avoid accumulating error) using 2 for-loops to cover an 8x8 grid. On all of the unit grids, I first evaluate the Bezier Patch for the top-left, bottom-left, and bottom-right points and pass those 3D points into addTriangle(...). Then, as a slight optimization, I only need to further evaluate the Bezier Patch for the remaining top-right point; I pass those points into addTriangle(...).</p>
+        <p>In <code>add2mesh(...)</code>, I evaluate a Bezier Patch and tesselate the patch uniformly on to an 8x8 grid with 128 triangles. I iterate integer-wise (to avoid accumulating error) using 2 for-loops to cover an 8x8 grid. On all of the unit grids, I first evaluate the Bezier Patch for the top-left, bottom-left, and bottom-right points and pass those 3D points into <code>addTriangle(...)</code>. Then, as a slight optimization, I only need to further evaluate the Bezier Patch for the remaining top-right point; I pass those points into <code>addTriangle(...)</code>.</p>
 
         <div align="left">
             <table style="width=100%">
                 <tr>
                     <td align="middle">
                     <img src="images/part1-1.png" width="800px" />
-                    <figcaption align="middle">A rendering of teapot.bez: my BezierPatch::evaluate(...) and add2mesh(...) seems to work!</figcaption>
+                    <figcaption align="middle">A rendering of teapot.bez: my <code>BezierPatch::evaluate(...)</code> and <code>add2mesh(...)</code> seems to work!</figcaption>
                 </tr>
             </table>
         </div>
@@ -86,7 +89,7 @@
         </div>
 
     <h2 align="middle">Part 3: Edge Flip</h2>
-        <p>In Part 3, I implemented HalfedgeMesh::flipEdge(...), which flips the edge that is passed in and returns an iterator to that flipped edge. First, I check if the edge is on a boundary: if it is, then the passed-in edge is returned immediately. Otherwise, it is safe to flip the edge!</p>
+        <p>In Part 3, I implemented <code>HalfedgeMesh::flipEdge(...)</code>, which flips the edge that is passed in and returns an iterator to that flipped edge. First, I check if the edge is on a boundary: if it is, then the passed-in edge is returned immediately. Otherwise, it is safe to flip the edge!</p>
         <p>I drew a diagram of the edge flip in the code, to clarify the function for myself and for potential readers.</p>
         <div align="left">
             <table style="width=100%">
@@ -139,7 +142,7 @@
             </table>
         </div>
 
-        <p>Basically, what I did for this part was the same as in Edge Flip. I first get all the relevant data structures. But then this time, I also allocate new structures by calling new*(). Then, I calculate the midpoint's position - it is the only new structure that requires a position assignment. Then, I go through the vertices, faces, and edges to set their appropriate halfedge()'s. Finally, I use the halfedge's setNeighbors(...) function compactly set each halfedge's pointers (iterators). While some of the assignment in setNeighbors(...) is redundant, it ensures correctness by requiring everything to be updated.</p>
+        <p>Basically, what I did for this part was the same as in Edge Flip. I first get all the relevant data structures. But then this time, I also allocate new structures by calling new*(). Then, I calculate the midpoint's position - it is the only new structure that requires a position assignment. Then, I go through the vertices, faces, and edges to set their appropriate halfedge()'s. Finally, I use the halfedge's <code>setNeighbors(...)</code> function compactly set each halfedge's pointers (iterators). While some of the assignment in <code>setNeighbors(...)</code> is redundant, it ensures correctness by requiring everything to be updated.</p>
         <p>I also handle the case where the edge to be split is on a boundary. In that case, less new structures are allocated into the mesh, but assignments are slightly trickier. Only the non-boundary face is split into two and receives a new edge; the boundary face is left alone. At the start, before getting the relevant data structures, we obtain <em>h</em> such that <em>h</em> is not on the boundary. This orients the triangle so that the face to be split is on the left side of the given edge, and the boundary face is on the right side of the given edge. Then, we obtain the relevant structures and the correct assignments.</p>
         <div align="left">
             <table style="width=100%">
@@ -173,7 +176,7 @@
                 </tr>
             </table>
         </div>
-        <p>Then, I split every old edge of the mesh. The old edge becomes the "top" edge of the split quad. The "left" and "right" edges are marked isNew as true, since they are new. However, even though it is newly allocated, the "bottom" edge is marked isNew as false, since it was originally part of the old edge. For the purposes of edge-flipping, it is an old edge. The newly created midpoint-vertex for each subdivision, returned by splitEdge(...), is marked as isNew true.</p>
+        <p>Then, I split every old edge of the mesh. The old edge becomes the "top" edge of the split quad. The "left" and "right" edges are marked isNew as true, since they are new. However, even though it is newly allocated, the "bottom" edge is marked isNew as false, since it was originally part of the old edge. For the purposes of edge-flipping, it is an old edge. The newly created midpoint-vertex for each subdivision, returned by <code>splitEdge(...)</code>, is marked as isNew true.</p>
         <p>In this edge splitting section, I had to figure out how to iterate and split all of the edges of the original mesh and none of the new edges created by the splitting. This task was tougher than I realized, as it turned out that mesh.edgesEnd() returned an iterator and not a real reference value. This had the strange effect that the <em>end</em> variable increased whenever an edge was split, even if I only assign the <em>end</em> once as mesh.edgesEnd() once before the loop. Thus the end was every-increasing, leading to an infinite loop. So, while iterating through the original edges in the previous section (Computing the newPosition values), I add the edge to a list of <em>EdgeIters</em>s, called <em>edgesToSplit</em>. Then in this splitting section, I iterate through the list of EdgeIters, rather than through using the iterator provided by mesh.edgesBegin() and mesh.edgesEnd(). The list is finite and does not grow with each splitting.</p>
         <p>In the next section, I flip any edge that connects to an old vertex and a new vertex. To do this, I iterate through all edges of the newly subdivided mesh. If the edge was part of an old edge, with isNew marked as false, immediately skip to the next iteration. Otherwise, the edge is new. So, we check whether it's vertices are of opposite isNew-ness, and flip the edge if they are: the two vertices are accessed via the edge's halfedge and the corresponding twin. If one if the vertices has (isNew == true) and the other has (isNew == false), we flip that edge. This operation ensures that the triangles are loop subdivided into equilateral-like shapes, rather than being overly skinny. (As explained by Denis Zorin's diagram in the assignment spec.)</p>
         <p>Finally all of the vertices' positions are updated. If the vertex is an vertex from the old mesh, with isNew false, it's position is updated with the value stored in the newPosition variable. Otherwise, if the vertex isNew, we assign it the value that was stored in it's old edge's newPosition variable. By construction of the previous parts' functions, the new vertex should naturally point to a halfedge whose edge contains the correct corresponding newPosition value. However, a small bug arose in my code. My new vertices did not all point to the correct halfedge whose edge had the newPosition value. I suspect that is becase my edge-flipping function "unstably" reassigns the vertices' halfedges, without respect to whether they are new or not. (This bug created interesting patterns in my meshes though.) To account for the "unstable" edge flip, I have an extra condition/loop inside this section. I have a HalfedgeIter traverse the incident edges to the vertex. The traversal stops when a non-New non-Zero-newPosition edge is found -- which is guaranteed to exist because it is exactly the edge that the new vertex was supposed to point to, before the edge flipping. This resolved the bug and thus subdivision happens correctly</p>
