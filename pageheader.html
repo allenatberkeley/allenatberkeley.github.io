@@ -20,14 +20,15 @@
     </script>
 
     <script>
-        // Force all 'link' tags' href to append a time
+        // Force all 'link' tags' href to append the direct link and a time tag
         // Thereby forcing refresh during debugging
         $('link').attr('href', function() {
-            return this.href + '?t=' + 
+            return 'http://allenatberkeley.github.io/' + this.href + '?t=' + 
                 (Math.floor((new Date()).getTime()));
         });
     </script>
-    <link rel="stylesheet" type="text/css" href="http://allenatberkeley.github.io/css/pageheader.css">
+    
+    <link rel="stylesheet" type="text/css" href="css/pageheader.css">
 
     <script>
         // Make all 'a' tags' onlick to append a time to the href of 'a'
@@ -102,4 +103,4 @@
     </h1>
 </div>
 </body>Debug Version:
-241
+243
