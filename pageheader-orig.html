@@ -20,14 +20,15 @@
     </script>
 
     <script>
-        // Force all 'link' tags' href to append a time
+        // Force all 'link' tags' href to append the direct link and a time tag
         // Thereby forcing refresh during debugging
         $('link').attr('href', function() {
-            return this.href + '?t=' + 
+            return 'http://allenatberkeley.github.io/' + this.href + '?t=' + 
                 (Math.floor((new Date()).getTime()));
         });
     </script>
-    <link rel="stylesheet" type="text/css" href="http://allenatberkeley.github.io/css/pageheader.css">
+    
+    <link rel="stylesheet" type="text/css" href="css/pageheader.css">
 
     <script>
         // Make all 'a' tags' onlick to append a time to the href of 'a'
@@ -49,7 +50,7 @@
     <div class="row">
         <!-- Column 1 -->
         <div class="col-md-3 text-center">
-            <small><a href="http://allenatberkeley.github.io/index.html" onclick="">
+            <small><a href="index.html" onclick="">
             Home
             </a></small>
         </div>
@@ -60,15 +61,15 @@
             
             <div class="dropdown">
                 <button class="dropdown-button">
-                    <a href="http://allenatberkeley.github.io/coursework.html" onclick="">
+                    <a href="coursework.html" onclick="">
                         Coursework
                     </a>
                 </button>
                 <div class="dropdown-content">
-                    <a href="http://allenatberkeley.github.io/coursework.html" onclick="">
+                    <a href="coursework.html" onclick="">
                         Major-Related Coursework
                     </a>
-                    <a href="http://allenatberkeley.github.io/coursework-all.html" onclick="">
+                    <a href="coursework-all.html" onclick="">
                         All Coursework
                     </a>
                 </div>
@@ -79,14 +80,14 @@
 
         <!-- Column 3 -->
         <div class="col-md-3 text-center">
-            <small><a href="http://allenatberkeley.github.io/projects.html" onclick="">
+            <small><a href="projects.html" onclick="">
                 Projects
             </a></small>
         </div>
 
         <!-- Column 4 -->
         <div class="col-md-3 text-center">
-            <small><a href="http://allenatberkeley.github.io/Resume.pdf" onclick="">
+            <small><a href="Resume.pdf" onclick="">
                 Résumé
             </a></small>
         </div>
