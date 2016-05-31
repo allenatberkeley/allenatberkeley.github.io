@@ -17,7 +17,7 @@ var prev_pos_x = 0;
 var prev_pos_y = 0;
 var ticking = false;
 
-function leafBounce() {
+function leafBounce(scroll_pos_x, scroll_pos_y) {
 
     // console.log("scroll: " + scroll_pos);
     // console.log("prev: " + prev_pos);
@@ -52,8 +52,8 @@ window.addEventListener('scroll', function(e) {
     scroll_pos_y = window.scrollY;
     if (!ticking) {
         window.requestAnimationFrame(function() {
-        leafBounce();
-        squareBounce();
+        leafBounce(scroll_pos_x, scroll_pos_y);
+        squareBounce(scroll_pos_y);
         ticking = false;
         });
     }
@@ -63,7 +63,7 @@ window.addEventListener('scroll', function(e) {
 /* SQUARE EXAMPLE FIX */
 var square = document.querySelector('.square')
 var prev_posS = 0;
-function squareBounce() {
+function squareBounce(scroll_pos_y) {
 
     // console.log("scroll: " + scroll_pos_x);
     // console.log("prev: " + prev_pos_x);
