@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <script>
-        // Force all 'link' tags' href to append the direct link and a time tag
+        // Force all 'link' tags' href to append a time
         // Thereby forcing refresh during debugging
         $('link').attr('href', function() {
-            return 'http://allenatberkeley.github.io/' + this.href + '?t=' + 
+            return this.href + '?t=' + 
                 (Math.floor((new Date()).getTime()));
         });
     </script>
-    <link rel="stylesheet" type="text/css" href="css/pagefooter.css">
+    <link rel="stylesheet" type="text/css" href="http://allenatberkeley.github.io/css/pagefooter.css">
 </head>
 <body>
     <footer class="footer">
