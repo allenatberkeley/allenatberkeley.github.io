@@ -22,14 +22,21 @@ function leafBounce(scroll_pos_x, scroll_pos_y) {
     // console.log("scroll: " + scroll_pos);
     // console.log("prev: " + prev_pos);
 
-    var x_val = 100;
-    var y_val = 100;
+    var x_val = 0;
+    var y_val = 0;
 
-    if (scroll_pos_x < prev_pos_x) {
-        x_val *= -1;
+    if (scroll_pos_x > prev_pos_x) {
+        x_val = 100;
     }
-    if (scroll_pos_y < prev_pos_y) {
-        y_val *= -1;
+    else if (scroll_pos_x < prev_pos_x) {
+        x_val = -100;
+    }
+
+    if (scroll_pos_y > prev_pos_y) {
+        y_val = 100;
+    }
+    else if (scroll_pos_y < prev_pos_y) {
+        y_val = -100;
     }
 
     dynamics.animate(leaf, {
