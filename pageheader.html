@@ -32,7 +32,7 @@
     <script>
         // Make all 'a' tags' onlick to append a time to the href of 'a'
         $('a').attr('onclick', function() {
-            return this.onclick + " var tag = Math.floor((new Date()).getTime() / factor) % date; location.href=this.href+'?t='+tag; return false;"
+            return this.onclick + " var tag = Math.floor((new Date()).getTime() / factor) % date; location.href=this.href + '?t=' + tag; return false;"
         });
     </script>    
 
@@ -102,4 +102,4 @@
     </h1>
 </div>
 </body>Debug Version:
-250
+251
