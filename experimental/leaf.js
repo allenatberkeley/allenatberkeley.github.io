@@ -32,12 +32,12 @@ function leafBounce(scroll_pos_x, scroll_pos_y) {
         x_val = -100;
     }
 
-    if (scroll_pos_y > prev_pos_y) {
-        y_val = 100;
-    }
-    else if (scroll_pos_y < prev_pos_y) {
-        y_val = -100;
-    }
+    // if (scroll_pos_y > prev_pos_y) {
+    //     y_val = 100;
+    // }
+    // else if (scroll_pos_y < prev_pos_y) {
+    //     y_val = -100;
+    // }
 
     dynamics.animate(leaf, {
         translateX: x_val,
