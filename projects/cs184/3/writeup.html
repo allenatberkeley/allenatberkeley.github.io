@@ -46,27 +46,27 @@
         <p>In task 3, I use the Moller Trumbore algorithm to test for ray intersections with triangles. I first compute the 4 scalar triple products required for computing the intersection time, <em>t</em>, barycentric coordinate 1 of the triangle, <em>b1</em>, and barycentric coordinate 2 of the triangle, <em>b2</em>. Scalar triple products are equivalent to finding the determinant of a 3x3 matrix composed of 3 horizontal 3-vectors. The first scalar triple product serves as a scaling/normalizing factor to the other products: it is the determinant of (ray's direction), (triangle edge 1), (triangle edge 2). The intersection time, <em>t</em> is given by dividing the [determinant of (vector of triangle vertex 1 to ray's origin), (triangle edge 1), and (triangle edge 2)] by the previous scaling factor. Then, <em>b1</em> is found by dividing the [determinant of (ray's direction), (triangle edge 2), and (vector of triangle vertex 1 to ray's origin)] by the previous scaling factor. Finally, <em>b2</em> is found by dividing the [determinant of (vector of triangle vertex 1 to ray's origin), (triangle edge 1), and (ray's direction)] by the previous scaling factor.</p>
         <p>If time <em>t</em> is out of bounds, then false is returned. If any of the barycentric coordinates <em>b1</em>, <em>b2</em>, or <em>1-b1-b2</em> are less than 0 (out of bounds), then false is returned. Otherwise, r.max_t is set to the intersection time and true is returned. r.max_t is set so that objects in the fore or back of another object are correctly covering or being covered by the other object. That is, things in front of other things actually show up like that. If an Intersection pointer was passed in, the Intersection variable is updated to contain the new information: time, primitive, normal, and bsdf. The normal is an interpolation of the vertex normals using the barycentric coordinates.</p>
         <figure class="figure">
-            <img class="img-responsive img-fluid center-block" src="images/1-3.png"/>
+            <img class="img-responsive img-fluid center-block" src="images/1-3.png"/><br>
             <figcaption class="figure-caption center-block">Result of implementing tasks 1, 2, and 3.<br></figcaption>
         </figure>
         <p>For task 4, in <code>Sphere::test(...)</code>, I test to see if a ray intersects with the given Sphere object. The time-based formula of a ray is set to equal the formula of a sphere, and the variable of time, <em>t</em>, is solved for. <em>t</em> is given by evaluating the quadratic formula with <em>a = dot(r.d, r.d); b = 2 * dot(diff, r.d); and c = dot(diff, diff) - this->r2</em>. The discriminant of the quadratic formula is evaluated first <em>(b^2 - 4ac)</em>. If the discriminant is negative, there is no intersection and false is returned. Otherwise, one or two solutions exists (if discriminant == 0 or discriminant > 0 respectively). The solutions to the quadratic formula are evaluated fully. The two time solutions are swapped such that <em>t1</em> is always smaller than <em>t2</em>. Given that there are time solutions to the intersection, in <code>Sphere::intersect(...)</code> we then check to make sure both intersection times are within bounds. If not, false is returned. If it is within bounds, true is returned. If an Intersection pointer was passed in, its values are updated: time, primitive, normal, and bsdf. The normal is the unit vector pointing from the sphere's center to the first intersection point. At first, I had some errors in calculating the normal vector's direction correctly.</p>
         <figure class="figure">
-            <img class="img-responsive img-fluid center-block" src="images/1-4a.png"/>
+            <img class="img-responsive img-fluid center-block" src="images/1-4a.png"/><br>
             <figcaption class="figure-caption center-block">Error in implementing task 4.<br></figcaption>
         </figure>
         
         <figure class="figure">
-            <img class="img-responsive img-fluid center-block" src="images/1-4b.png"/>
+            <img class="img-responsive img-fluid center-block" src="images/1-4b.png"/><br>
             <figcaption class="figure-caption center-block">Error in implementing task 4.<br></figcaption>
         </figure>
         
         <figure class="figure">
-            <img class="img-responsive img-fluid center-block" src="images/1-4c.png"/>
+            <img class="img-responsive img-fluid center-block" src="images/1-4c.png"/><br>
             <figcaption class="figure-caption center-block">Task 4, final rendering of spheres.<br></figcaption>
         </figure>
         
         <figure class="figure">
-            <img class="img-responsive img-fluid center-block" src="images/1-4gems.png"/>
+            <img class="img-responsive img-fluid center-block" src="images/1-4gems.png"/><br>
             <figcaption class="figure-caption center-block">Gems, this was so much slower to render than the spheres! (240.4 seconds)<br></figcaption>
         </figure>
 
@@ -80,27 +80,27 @@
         <p>And then I also find the intersection times of the ray with the two y-axis-oriented planes of the bounding box. I know that if (tx1 > ty2) or (tx2 < ty1), there is no intersection with the bounding box, and return false. Otherwise we have (tmin = min(tx1, ty1)) and (tmax = max(tx2, ty2)). I then find the intersection times of the ray with the two z-axis-oriented planes of the bounding box. I know that if (tmin > tx2) or (tmax < tz1), there is no intersection with the bounding box, and return false. Otherwise we have (tmin = min(tmin, tz1)) and (tmax = max(tmax, tz2)). Finally, if false has not been returned already, the passed in references (to = tmin) and (t1 = tmax), and true is returned. The ray's min_t and max_t variables are not set here, as doing so will wrongly restricted the time boundaries: this makes it so that testing the intersection of the bounding box of a right child node incorrect after testing the intersection of the left child node.</p>
         <p>For the <code>BVHAccel::intersect(...)</code>, this function is also recursive. First, the ray is checked to see if it intersects with the bounding box of this node, using <code>BBox::intersect(...)</code>. If it does not, immediately return. Otherwise, check if the current node is a leaf node. If it <b>is a leaf node</b>, iterate through this node's vector of primitives, and find the intersection with the lowest intersection time. (That is, set the passed in *i to have the data of the Intersection tempI with smallest tempI.t of all the primitives.) After *i is updated with the data of the shortest Intersection time, true is returned. False is returned if none of the primitives are actually intersected. The ray's min_t and max_t values, and total_isects, are set appropriately. Otherwise if it <b>is not a leaf node</b>, then we recurse by calling <code>BVHAccel::intersect(...)</code> on the left AND the right child of this node. A bug arose here, which is shown in the first picture below: my furthest away intersections were being rendered in front of my closest intersections. This bug is because I passed in the same Intersection *i pointer into both recursive calls, causing the second recursive call to overwrite *i of the first recursive call. The fix was to have a temporary Intersection tempI. I pass the reference of tempI into <code>BVHAccel::intersect(...)</code>, and then only set the data of Intersection *i to have the data of tempI if (tempI.t < i->t). That is, only update <em>i</em> after each recursive call if the new Intersection tempI has a shorter time than the current <em>i</em>. If Intersection *i is updated after either recursive call, true is returned; otherwise there was no intersection and false is returned.</p>
         <figure class="figure">
-            <img class="img-responsive img-fluid center-block" src="images/2-lucy1.png"/>
+            <img class="img-responsive img-fluid center-block" src="images/2-lucy1.png"/><br>
             <figcaption class="figure-caption center-block">An incorrect rendering of CBlucy.dae. The back wall is rendered in front of the statue; and the back of the statue's pedestal is rendered in front of the front of the pedestal.<br></figcaption>
         </figure>
         
         <figure class="figure">
-            <img class="img-responsive img-fluid center-block" src="images/2-lucy2.png"/>
+            <img class="img-responsive img-fluid center-block" src="images/2-lucy2.png"/><br>
             <figcaption class="figure-caption center-block">A rendering of CBlucy.dae, done in log time by using a BVH.<br></figcaption>
         </figure>
         
         <figure class="figure">
-            <img class="img-responsive img-fluid center-block" src="images/2-max.png"/>
+            <img class="img-responsive img-fluid center-block" src="images/2-max.png"/><br>
             <figcaption class="figure-caption center-block">A rendering of maxplanck.dae, done in log time by using a BVH.<br></figcaption>
         </figure>
         
         <figure class="figure">
-            <img class="img-responsive img-fluid center-block" src="images/2-dragon.png"/>
+            <img class="img-responsive img-fluid center-block" src="images/2-dragon.png"/><br>
             <figcaption class="figure-caption center-block">A rendering of CBdragon.dae, done in log time by using a BVH.<br></figcaption>
         </figure>
         
         <figure class="figure">
-            <img class="img-responsive img-fluid center-block" src="images/2-dragon2.png"/>
+            <img class="img-responsive img-fluid center-block" src="images/2-dragon2.png"/><br>
             <figcaption class="figure-caption center-block">A rendering of dragon.dae, done in log time by using a BVH.<br></figcaption>
         </figure>
 
@@ -112,42 +112,42 @@
 
         <p>We accumulate the radiances into L_out. Sample_L contains an incoming radiance, it is converted to an irradiance using a cosine term: (w_in.z). w_in.z is a cosine term because it is the dot product of the two unit vectors w_in and (0,0,1). The bsdf_val is multiplied to the scaled sample_L. And the whole expression is divided by pdf to undo bias resulting from the probability distribution of sampling the light. And that whole expression is divided again by ns_area_light, so that the final L_out (after accumulating and dividing) is correctly averaged over all of the light samples. In the case of a delta light, ns_area_light == 1, so there is no need to divide by the number of samples there.</p>
         <figure class="figure">
-            <img class="img-responsive img-fluid center-block" src="images/3-dragon1.png"/>
+            <img class="img-responsive img-fluid center-block" src="images/3-dragon1.png"/><br>
             <figcaption class="figure-caption center-block">A buggy direct illumination of dragon.dae. With no shadows, a result of not accounting for rays originating within a bounding box.<br></figcaption>
         </figure>
         
         <figure class="figure">
-            <img class="img-responsive img-fluid center-block" src="images/3-dragon2.png"/>
+            <img class="img-responsive img-fluid center-block" src="images/3-dragon2.png"/><br>
             <figcaption class="figure-caption center-block">A buggy direct illumination of dragon.dae. With too many shadows, a result of accidentally passing object coordinates into the shadow ray instead of world coordinates.<br></figcaption>
         </figure>
         
         <figure class="figure">
-            <img class="img-responsive img-fluid center-block" src="images/3-bunnyc64s32l.png"/>
+            <img class="img-responsive img-fluid center-block" src="images/3-bunnyc64s32l.png"/><br>
             <figcaption class="figure-caption center-block">A direct illumination rendering of CBbunny.dae. Using 64 camera rays per pixel and 32 samples per area light.<br></figcaption>
         </figure>
         
         <figure class="figure">
-            <img class="img-responsive img-fluid center-block" src="images/3-bunny64s32l.png"/>
+            <img class="img-responsive img-fluid center-block" src="images/3-bunny64s32l.png"/><br>
             <figcaption class="figure-caption center-block">A direct illumination rendering of bunny.dae. Using 64 camera rays per pixel and 32 samples per area light.<br></figcaption>
         </figure>
         <p>Comparing the 4 dragon images below. All of the images used 64 camera rays per pixel. The first dragon used 1 sample per area light, the second dragon used 8 samples, the third used 32 samples, and the fourth used 64 samples. The first image does have some graininess to it. The surface of the model looks like it has a rough, rocky texture. The lighted areas and shadow areas of the image are not well contrasted. Shadow borders are fuzzy. In the second image, the surface appears smoother than before, but there is still some graininess to the image. The edges of the shadow appear to be better defined, but there is still moderately low contrast between light and shadow. In the third image, the surface of the model looks smooth, now without tiny speckles. The contrast between lighted surfaces and shadows is much more prevalent than before, and borders are pretty well defined. The fourth images looks very similar to the third image. I can only perceive that this image has a very-very-slightly more contrast between lights and darks than the previous image.</p>
         <figure class="figure">
-            <img class="img-responsive img-fluid center-block" src="images/3-dragon64s1l.png"/>
+            <img class="img-responsive img-fluid center-block" src="images/3-dragon64s1l.png"/><br>
             <figcaption class="figure-caption center-block">A direct illumination rendering of dragon.dae. Using 64 camera rays per pixel and 1 sample per area light.<br></figcaption>
         </figure>
         
         <figure class="figure">
-            <img class="img-responsive img-fluid center-block" src="images/3-dragon64s8l.png"/>
+            <img class="img-responsive img-fluid center-block" src="images/3-dragon64s8l.png"/><br>
             <figcaption class="figure-caption center-block">A direct illumination rendering of dragon.dae. Using 64 camera rays per pixel and 8 samples per area light.<br></figcaption>
         </figure>
         
         <figure class="figure">
-            <img class="img-responsive img-fluid center-block" src="images/3-dragon64s32l.png"/>
+            <img class="img-responsive img-fluid center-block" src="images/3-dragon64s32l.png"/><br>
             <figcaption class="figure-caption center-block">A direct illumination rendering of dragon.dae. Using 64 camera rays per pixel and 32 samples per area light.<br></figcaption>
         </figure>
         
         <figure class="figure">
-            <img class="img-responsive img-fluid center-block" src="images/3-dragon64s64l.png"/>
+            <img class="img-responsive img-fluid center-block" src="images/3-dragon64s64l.png"/><br>
             <figcaption class="figure-caption center-block">A direct illumination rendering of dragon.dae. Using 64 camera rays per pixel and 64 samples per area light.<br></figcaption>
         </figure>
 
@@ -160,37 +160,37 @@
         <p>This is what I have implemented, and I have followed the spec as closely as I could tell. However, my end result (the bunny below) still had some visual glitches and bugs. I have hunted for this bug for many hours, but still could not resolve it.</p>
         <p><b>Last minute update:</b> I have only managed to resolve the bug at ~11:30 pm. (3/31). And unfortunately do not have enough time to render all of the deliverables.</p>
         <figure class="figure">
-            <img class="img-responsive img-fluid center-block" src="images/4-intersectionerror.png"/>
+            <img class="img-responsive img-fluid center-block" src="images/4-intersectionerror.png"/><br>
             <figcaption class="figure-caption center-block">An incorrect implementation of indirect lighting.<br></figcaption>
         </figure>
         
         <figure class="figure">
-            <img class="img-responsive img-fluid center-block" src="images/hunbun.png"/>
+            <img class="img-responsive img-fluid center-block" src="images/hunbun.png"/><br>
             <figcaption class="figure-caption center-block">My (previously final) rendering for this part: The bunny with both direct and indirect lighting. (-s 64 -l 16 -m 5). There are some obvious bugs and edge cases that were not correctly handled for this image. However, along the ceiling, one can see a mixture of red and blue pixels which resulted from indirect lighting from the two side walls. There is a similar mixing of red and blue pixels along the floor. Additionally, one can see that the shadow on the left side of the bunny has an appropriate red tint and the shadow on the right side of the bunny has an appropriate blue tint. Unfortunately, some bugs include: the choppy triangle on the left side of the floor; the bunny itself not having much indirect lighting except for a few places around the feet and tail; the left wall have triangles of two different red shades; and a seam is visible on the ceiling.<br></figcaption>
         </figure>
         
         <figure class="figure">
-            <img class="img-responsive img-fluid center-block" src="images/hunbun2.png"/>
+            <img class="img-responsive img-fluid center-block" src="images/hunbun2.png"/><br>
             <figcaption class="figure-caption center-block">My final good rendering for this part. The bugs noted in the previous image's captioned are fixed here. There are no more choppy triangles; the bunny itself does have indirect lighting from the floor and walls (and ceiling); the box's surfaces have smooth transitions between triangles; the back wall experiences indirect lighting as well.<br></figcaption>
         </figure>
 
         <figure class="figure">
-            <img class="img-responsive img-fluid center-block" src="images/hx0.png"/>
+            <img class="img-responsive img-fluid center-block" src="images/hx0.png"/><br>
             <figcaption class="figure-caption center-block">Screenshot of running ./pathtracer with default parameters and a ray depth of 1. There is no indirect lighting in this image.<br></figcaption>
         </figure>
         
         <figure class="figure">
-            <img class="img-responsive img-fluid center-block" src="images/hx1.png"/>
+            <img class="img-responsive img-fluid center-block" src="images/hx1.png"/><br>
             <figcaption class="figure-caption center-block">Screenshot of running ./pathtracer with default parameters and a ray depth of 2. With only one "bounce" of indirect lighting, the bottom of the bunny has already gotten much brighter. The ceiling now also has visible color.<br></figcaption>
         </figure>
         
         <figure class="figure">
-            <img class="img-responsive img-fluid center-block" src="images/hx4.png"/>
+            <img class="img-responsive img-fluid center-block" src="images/hx4.png"/><br>
             <figcaption class="figure-caption center-block">Screenshot of running ./pathtracer with default parameters and a ray depth of 4. All of the shadows are now less dark. And, color from indirect lighting can start to be on the chest and tail of the bunny.<br></figcaption>
         </figure>
         
         <figure class="figure">
-            <img class="img-responsive img-fluid center-block" src="images/hx9.png"/>
+            <img class="img-responsive img-fluid center-block" src="images/hx9.png"/><br>
             <figcaption class="figure-caption center-block">Screenshot of running ./pathracer with default parameters and a ray depth of 9. The shadows are even less dark now, as a result from having multiple light rays "bounce" into the shaded regions. Indirect light color can clearly been seen on both the bunny and the shadow of the bunny. The white walls are visibly vaguely colored now as well.<br></figcaption>
         </figure>
 </div>
