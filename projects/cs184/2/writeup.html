@@ -44,6 +44,10 @@
 
         <p>In <code>add2mesh(...)</code>, I evaluate a Bezier Patch and tesselate the patch uniformly on to an 8x8 grid with 128 triangles. I iterate integer-wise (to avoid accumulating error) using 2 for-loops to cover an 8x8 grid. On all of the unit grids, I first evaluate the Bezier Patch for the top-left, bottom-left, and bottom-right points and pass those 3D points into <code>addTriangle(...)</code>. Then, as a slight optimization, I only need to further evaluate the Bezier Patch for the remaining top-right point; I pass those points into <code>addTriangle(...)</code>.</p>
 
+    <figure class="figure">
+        <img class="img-responsive img-fluid center-block" src="images/part1-1.png"/>
+        <figcaption class="figure-caption center-block">Lens 1. Rays converging at a conjugate point on the left side of the image.<br><br></figcaption>
+    </figure>
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part1-1.png"/>
             <figcaption class="figure-caption center-block">A rendering of teapot.bez: my <code>BezierPatch::evaluate(...)</code> and <code>add2mesh(...)</code> seems to work!<br><br></figcaption>
