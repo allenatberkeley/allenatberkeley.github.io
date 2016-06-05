@@ -42,111 +42,63 @@
     <h2 align="middle">Part 1: Tracing Rays through Lenses</h2>
     <p>There are many differences between a pinhole camera (as in the previous project) and a fully simulated lens system (as in this project). Firstly, a pinhole camera has no lens, and in real life, a pinhole camera is subject to light diffraction effects. A lens system can converge light without reducing the amount of light in the scene. Using a lens system, a camera can focus on individual objects and blur other parts of the scene. Unlike a pinhole camera, a lens camera has a variable aperture, which allows the amount of light coming into the sensor to be adjusted. Also unlike a pinhole camera, a lens camera has adjustable perspectives, for example, one can have wide angle lenses, fisheye lenses, or telephoto lenses, all of which have different effects on the image. The wide angle lenses capture more horizontal space in the world, fisheye lenses capture a wide hemisphere of the world, and telephoto lenses capture far away (small angle) images of the world. Additionally, lens cameras can produce aberrations, such as circles of confusion and bokeh. Lenses can also be manipulated during the capturing of an image to produce interesting effects, like tilt-shift photography, which makes scenes appear minature. In real life, both pinhole and (single) lens cameras capture images upside-down to the world.</p>
 
-    <div align="center">
-        <table style="width=100%">
-            <tr>
-                <td align="middle">
-                <img class="img-responsive" src="images/1-lens1-3.png" width="640px" />
-                <figcaption align="middle">Lens 1. Rays converging at a conjugate point on the left side of the image.</figcaption><br></td>
-            </tr>
-        </table>
-    </div>
-    <div align="center">
-        <table style="width=100%">
-            <tr>
-                <td align="middle">
-                <img class="img-responsive" src="images/1-lens2-2.png" width="640px" />
-                <figcaption align="middle">Lens 2. Rays converging at a conjugate point on the left side of the image.</figcaption><br></td>
-            </tr>
-        </table>
-    </div>
-    <div align="center">
-        <table style="width=100%">
-            <tr>
-                <td align="middle">
-                <img class="img-responsive" src="images/1-lens3.png" width="640px" />
-                <figcaption align="middle">Lens 3. Rays converging at a conjugate point on the left side of the image. This image is zoomed out much more than the others because it is a telephoto lens.</figcaption><br></td>
-            </tr>
-        </table>
-    </div>
-    <div align="center">
-        <table style="width=100%">
-            <tr>
-                <td align="middle">
-                <img class="img-responsive" src="images/1-lens4-2.png" width="640px" />
-                <figcaption align="middle">Lens 4. Rays converging at a conjugate point on the left side of the image.</figcaption><br></td>
-            </tr>
-        </table>
-    </div>
+    <figure class="figure">
+        <img class="img-responsive img-fluid center-block" src="images/1-lens1-3.png"/>
+        <figcaption class="figure-caption">Lens 1. Rays converging at a conjugate point on the left side of the image.</figcaption>
+    </figure>
+    
+    <figure class="figure">
+        <img class="img-responsive img-fluid center-block" src="images/1-lens2-2.png"/>
+        <figcaption class="figure-caption">Lens 2. Rays converging at a conjugate point on the left side of the image.</figcaption>
+    </figure>
+    
+    <figure class="figure">
+        <img class="img-responsive img-fluid center-block" src="images/1-lens3.png"/>
+        <figcaption class="figure-caption">Lens 3. Rays converging at a conjugate point on the left side of the image. This image is zoomed out much more than the others because it is a telephoto lens.</figcaption>
+    </figure>
+    
+    <figure class="figure">
+        <img class="img-responsive img-fluid center-block" src="images/1-lens4-2.png"/>
+        <figcaption class="figure-caption">Lens 4. Rays converging at a conjugate point on the left side of the image.</figcaption>
+    </figure>
 
     <p>.</p>
-    <div align="center">
-        <table style="width=100%">
-            <tr>
-                <td align="middle">
-                <img class="img-responsive" src="images/1-table.png" width="480px" />
-                <figcaption align="middle">Table of important distances for each lens. All values are in millimeters. All of the depth measurements are relative to the origin of the camera space (Specifically, they are measurements along the z-axis).</figcaption><br></td>
-            </tr>
-        </table>
-    </div>
+    <figure class="figure">
+        <img class="img-responsive img-fluid center-block" src="images/1-table.png"/>
+        <figcaption class="figure-caption">Table of important distances for each lens. All values are in millimeters. All of the depth measurements are relative to the origin of the camera space (Specifically, they are measurements along the z-axis).</figcaption>
+    </figure>
 
     <p>.</p>
 
-    <div align="center">
-        <table style="width=100%">
-            <tr>
-                <td align="middle">
-                <img class="img-responsive" src="images/1-graph1.png" width="480px" />
-                <figcaption align="middle">Lens 1. Graph of sensor depth vs. conjugate focus depth. Both the sensor depth (x-axis) and conjugate focus depth (y-axis) are in units of millimeters. This is the D-GAUSS F/2 22deg HFOV lens. It has a fair range of sensor depths (about 52 to 90 mm) for which objects are in near focus (0 to 1 meter away). Beyond that, with the sensor depth below 52 mm, infinity focus occurs as indicated by the asymptote on the left side of the graph.</figcaption><br></td>
-            </tr>
-        </table>
-    </div>
-    <div align="center">
-        <table style="width=100%">
-            <tr>
-                <td align="middle">
-                <img class="img-responsive" src="images/1-graph2.png" width="480px" />
-                <figcaption align="middle">Lens 2. Graph of sensor depth vs. conjugate focus depth. Both the sensor depth (x-axis) and conjugate focus depth (y-axis) are in units of millimeters. This is the Wide-angle Nakamura lens. It has a smaller range of sensor depths than the D-GAUSS (about 30 to 40 mm) for which objects are in near focus. Beyond that, with the sensor depth below 30 mm, infinity focus occurs as indicated by the asymptote on the left side of the graph.</figcaption><br></td>
-            </tr>
-        </table>
-    </div>
-    <div align="center">
-        <table style="width=100%">
-            <tr>
-                <td align="middle">
-                <img class="img-responsive" src="images/1-graph3.png" width="480px" />
-                <figcaption align="middle">Lens 3. Graph of sensor depth vs. conjugate focus depth. Both the sensor depth (x-axis) and conjugate focus depth (y-axis) are in units of millimeters. As shown by the asymptote on the left side of the graph, with a smaller sensor depth (approaching 190 mm), the conjugate focus depth goes to beyond 50 meters. The conjugate focus is that far away because this graph represents the SIGLER Super achromate telephoto lens. This far away conjugate is also shown by the above lenstester rendering.</figcaption><br></td>
-            </tr>
-        </table>
-    </div>
-    <div align="center">
-        <table style="width=100%">
-            <tr>
-                <td align="middle">
-                <img class="img-responsive" src="images/1-graph4.png" width="480px" />
-                <figcaption align="middle">Lens 4. Graph of sensor depth vs. conjugate focus depth. Both the sensor depth (x-axis) and conjugate focus depth (y-axis) are in units of millimeters. As shown by the asymptote on the left side of the graph, infinity focus is quickly achieved with a sensor depth below 32 mm. This means that there is only a short range of distances for which objects are in reasonably good near focus, (focus not at infinity). This is because this lens is the Muller fisheye lens. As shown in the convergence image above for lens 4, the conjugate point is very close to the most forward lens.</figcaption><br></td>
-            </tr>
-        </table>
-    </div>
+    <figure class="figure">
+        <img class="img-responsive img-fluid center-block" src="images/1-graph1.png"/>
+        <figcaption class="figure-caption">Lens 1. Graph of sensor depth vs. conjugate focus depth. Both the sensor depth (x-axis) and conjugate focus depth (y-axis) are in units of millimeters. This is the D-GAUSS F/2 22deg HFOV lens. It has a fair range of sensor depths (about 52 to 90 mm) for which objects are in near focus (0 to 1 meter away). Beyond that, with the sensor depth below 52 mm, infinity focus occurs as indicated by the asymptote on the left side of the graph.</figcaption>
+    </figure>
+    
+    <figure class="figure">
+        <img class="img-responsive img-fluid center-block" src="images/1-graph2.png"/>
+        <figcaption class="figure-caption">Lens 2. Graph of sensor depth vs. conjugate focus depth. Both the sensor depth (x-axis) and conjugate focus depth (y-axis) are in units of millimeters. This is the Wide-angle Nakamura lens. It has a smaller range of sensor depths than the D-GAUSS (about 30 to 40 mm) for which objects are in near focus. Beyond that, with the sensor depth below 30 mm, infinity focus occurs as indicated by the asymptote on the left side of the graph.</figcaption>
+    </figure>
+    
+    <figure class="figure">
+        <img class="img-responsive img-fluid center-block" src="images/1-graph3.png"/>
+        <figcaption class="figure-caption">Lens 3. Graph of sensor depth vs. conjugate focus depth. Both the sensor depth (x-axis) and conjugate focus depth (y-axis) are in units of millimeters. As shown by the asymptote on the left side of the graph, with a smaller sensor depth (approaching 190 mm), the conjugate focus depth goes to beyond 50 meters. The conjugate focus is that far away because this graph represents the SIGLER Super achromate telephoto lens. This far away conjugate is also shown by the above lenstester rendering.</figcaption>
+    </figure>
+    
+    <figure class="figure">
+        <img class="img-responsive img-fluid center-block" src="images/1-graph4.png"/>
+        <figcaption class="figure-caption">Lens 4. Graph of sensor depth vs. conjugate focus depth. Both the sensor depth (x-axis) and conjugate focus depth (y-axis) are in units of millimeters. As shown by the asymptote on the left side of the graph, infinity focus is quickly achieved with a sensor depth below 32 mm. This means that there is only a short range of distances for which objects are in reasonably good near focus, (focus not at infinity). This is because this lens is the Muller fisheye lens. As shown in the convergence image above for lens 4, the conjugate point is very close to the most forward lens.</figcaption>
+    </figure>
 
-    <div align="center">
-        <table style="width=100%">
-            <tr>
-                <td align="middle">
-                <img class="img-responsive" src="images/1-CBdragon.png" width="640px" />
-                <figcaption align="middle">CBdragon.dae at a high rendering quality. Using lens 1 (D-GAUSS F/2 22deg HFOV). The mouth and chest of the dragon are in focus: the metallic surface is shiny and the edges of the object are sharp. The tail end of the dragon is out of focus and blurry: the surface is less shiny and the edges of the object are not distinct. Additionally, the corner of the Cornell box is also out of focus in the distance; the corner is blurry and not sharp, with the white and the blue bleeding together.</figcaption><br></td>
-            </tr>
-        </table>
-    </div>
-    <div align="center">
-        <table style="width=100%">
-            <tr>
-                <td align="middle">
-                <img class="img-responsive" src="images/1-dragonfish.png" width="640px" />
-                <figcaption align="middle">CBdragon.dae at a high rendering quality (Oops, low ray depth). Using lens 4 (Muller 16mm/f4 155.9FOV fisheye lens). The entire dragon here is fairly in focus. However, subjectively the middle curve of the dragon's body appears to be slightly more in focus than the rest of it. Since this is a fish eye lens, a larger hemisphere of the scene is captured compared to the other lenses. Characteristic of this lens type is that the edges of the image (areas with a large angle to the z-axis) are warped and stretched out. This effect can be seen be examining the edges of the Cornell box where the walls meet: these edges turn out to be curved lines rather than straight lines.</figcaption><br></td>
-            </tr>
-        </table>
-    </div>
+    <figure class="figure">
+        <img class="img-responsive img-fluid center-block" src="images/1-CBdragon.png"/>
+        <figcaption class="figure-caption">CBdragon.dae at a high rendering quality. Using lens 1 (D-GAUSS F/2 22deg HFOV). The mouth and chest of the dragon are in focus: the metallic surface is shiny and the edges of the object are sharp. The tail end of the dragon is out of focus and blurry: the surface is less shiny and the edges of the object are not distinct. Additionally, the corner of the Cornell box is also out of focus in the distance; the corner is blurry and not sharp, with the white and the blue bleeding together.</figcaption>
+    </figure>
+    
+    <figure class="figure">
+        <img class="img-responsive img-fluid center-block" src="images/1-dragonfish.png"/>
+        <figcaption class="figure-caption">CBdragon.dae at a high rendering quality (Oops, low ray depth). Using lens 4 (Muller 16mm/f4 155.9FOV fisheye lens). The entire dragon here is fairly in focus. However, subjectively the middle curve of the dragon's body appears to be slightly more in focus than the rest of it. Since this is a fish eye lens, a larger hemisphere of the scene is captured compared to the other lenses. Characteristic of this lens type is that the edges of the image (areas with a large angle to the z-axis) are warped and stretched out. This effect can be seen be examining the edges of the Cornell box where the walls meet: these edges turn out to be curved lines rather than straight lines.</figcaption>
+    </figure>
 
     <h2 align="middle">Part 2: Contrast-based autofocus</h2>
     <p>My autofocus algorithm is composed of two parts: a variance-based focus metric and the autofocus heuristic. The algorithm runs on a small cell in the scene to find the sensor depth that best focuses that part of the image.</p>
@@ -155,84 +107,49 @@
     <p>My autofocus heuristic seeks to maximize the Variance value calculated above. First, the <em>sensor_depth</em> is initialized to be at the len's sensor-depth value <em>infinity_focus</em>. Then the initial step size is set to be the len's sensor-depth values <em>0.75 * (near_focus - infinity_focus)</em>. (The 0.75 was arbitrarily chosen such that the step size is between the two focusing depths: this way the step size is neither too big or too small.) Two variables record the maximum variance achieved and the depth at which that maximum variance was achieved. Then while the step size is greater than 0.005 (millimeters), we loop: (I) one step size is added to <em>sensor_depth</em>; (IIA) if the variance is increased in the cell, record the current state and maximum values, and continue the loop to step again; (IIB) otherwise if the variance is decreased after stepping, keep the current <em>sensor_depth</em> step, divide the step size by negative two, and loop to step again using the new step size. My algorithm divides the step size by negative two in order to (1) decrease the step size and (2) reverse the direction of stepping. My justification for keeping the "missteps," when the <em>sensor_depth</em> is overstepped and the variance decreases, and reversing directions, is to try to avoid local maxima "traps" in variances.^* The loop breaks when the step size is below 0.005 mm. Then, the <em>sensor_depth</em> is finally assigned to be the depth at which the maximum variance was recorded. The cell is then in focus.</p>
     <p>^* My algorithm weakly protects against the local maxima when trying to find the global maximum in variance. When an overstep occurs, the variance is less than before the step. However, the <em>sensor_depth</em> values is kept, and we instead step backwards. If the global maximum was jumped over, then variance should increase once again while stepping backwards and we eventually reach the global maximum as intended. If a local maximum was jumped over, stepping backwards may indicate another decrease in variance, in which case direction is reversed again and we step forwards to increasing variance. Hopefully, the new stepping forwards will lead to the global maximum. It is possible to keep jumping over local maxima, but it is unlikely due to the continually decreasing step size.</p>
     
-    <div align="center">
-        <table style="width=100%">
-            <tr>
-                <td align="middle">
-                <img class="img-responsive" src="images/2-autobunny.png" width="640px" />
-                <figcaption align="middle">An image with autofocusing done with respect to the ears of the bunny. The shadows and the ambient occlusion around the bunny ears make this a good place to test the autofocus algorithm. The ears are high contrast elements.</figcaption><br></td>
-            </tr>
-        </table>
-    </div>
-    <div align="center">
-        <table style="width=100%">
-            <tr>
-                <td align="middle">
-                <img class="img-responsive" src="images/2-graph1.png" width="640px" />
-                <figcaption align="middle">Graph of my autofocus algorithm running on the above cell. The x-axis of this graph is sensor depth (millimeters) and the y-axis of this graph is variance (a unitless value representing the total variance of RGB values in the cell). A global maximum can be seen at 54.692 mm with a variance of 787.177. This is the sensor depth which produced the cell in the above image. (This graph includes the variance values of missteps, when the global maximum variance is overstepped.)</figcaption><br></td>
-            </tr>
-        </table>
-    </div>
+    <figure class="figure">
+        <img class="img-responsive img-fluid center-block" src="images/2-autobunny.png"/>
+        <figcaption class="figure-caption">An image with autofocusing done with respect to the ears of the bunny. The shadows and the ambient occlusion around the bunny ears make this a good place to test the autofocus algorithm. The ears are high contrast elements.</figcaption>
+    </figure>
+    
+    <figure class="figure">
+        <img class="img-responsive img-fluid center-block" src="images/2-graph1.png"/>
+        <figcaption class="figure-caption">Graph of my autofocus algorithm running on the above cell. The x-axis of this graph is sensor depth (millimeters) and the y-axis of this graph is variance (a unitless value representing the total variance of RGB values in the cell). A global maximum can be seen at 54.692 mm with a variance of 787.177. This is the sensor depth which produced the cell in the above image. (This graph includes the variance values of missteps, when the global maximum variance is overstepped.)</figcaption>
+    </figure>
 
 
-    <div align="center">
-        <table style="width=100%">
-            <tr>
-                <td align="middle">
-                <img class="img-responsive" src="images/2-dragon1.png" width="640px" />
-                <figcaption align="middle">Lens 1, focusing on the middle of the middle bump of the dragon. The bright specular shine of the metal contrasts well with the dark reflection of the open end of the Cornell box. The head of the dragon is out of focus, particularly towards the front of the mouth. Similarly, the tip of the tail is out of focus.</figcaption><br></td>
-            </tr>
-        </table>
-    </div>
-    <div align="center">
-        <table style="width=100%">
-            <tr>
-                <td align="middle">
-                <img class="img-responsive" src="images/2-dragon2.png" width="640px" />
-                <figcaption align="middle">Lens 2, focusing on the top of the middle bump of the dragon. In particular, the backside of the middle bump turned out to be particularly in focus. Perhaps enough light reflected off the bottom curves of the dragon and hit that backside to cause the algorithm to choose this sensor depth. Notably, because this is a wide angle lens, both the red and the blue wall can be seen! Like the above image, the mouth and tail of the dragon are out of focus.</figcaption><br></td>
-            </tr>
-        </table>
-    </div>
-    <div align="center">
-        <table style="width=100%">
-            <tr>
-                <td align="middle">
-                <img class="img-responsive" src="images/2-dragon3.png" width="640px" />
-                <figcaption align="middle">Lens 3, focusing on the horns on the back of the dragon's head. Because this was a telephoto lens, the image had to be taken zoomed far away from the scene. As a result, there is little relative (camera z-position) distance between the surfaces of the dragon. The focusing was done on the dragon's horns, but the rest of the dragon is fairly in focus as well. Additionally, because of the small capturing angle of the lens, only the back wall is shown here -- in contrast to seeing both walls in the above wide angle lens image.</figcaption><br></td>
-            </tr>
-        </table>
-    </div>
-    <div align="center">
-        <table style="width=100%">
-            <tr>
-                <td align="middle">
-                <img class="img-responsive" src="images/2-dragon4.png" width="640px" />
-                <figcaption align="middle">Lens 4, focusing on the middle of the middle bump of the dragon. The edges of the 'scales' appear fairly well defined. There is high contrast between that middle dark spot and the bright specular reflection above it. As noted in the previous parts, the edges of the lens warp the image. Because the fisheye lens captures a large hemisphere of the scene, the center of the image appears fairly realstic in proportions while the edges are out of proportion. The edges of the Cornell box are curved rather than straight.</figcaption><br></td>
-            </tr>
-        </table>
-    </div>
+    <figure class="figure">
+        <img class="img-responsive img-fluid center-block" src="images/2-dragon1.png"/>
+        <figcaption class="figure-caption">Lens 1, focusing on the middle of the middle bump of the dragon. The bright specular shine of the metal contrasts well with the dark reflection of the open end of the Cornell box. The head of the dragon is out of focus, particularly towards the front of the mouth. Similarly, the tip of the tail is out of focus.</figcaption>
+    </figure>
+    
+    <figure class="figure">
+        <img class="img-responsive img-fluid center-block" src="images/2-dragon2.png"/>
+        <figcaption class="figure-caption">Lens 2, focusing on the top of the middle bump of the dragon. In particular, the backside of the middle bump turned out to be particularly in focus. Perhaps enough light reflected off the bottom curves of the dragon and hit that backside to cause the algorithm to choose this sensor depth. Notably, because this is a wide angle lens, both the red and the blue wall can be seen! Like the above image, the mouth and tail of the dragon are out of focus.</figcaption>
+    </figure>
+    
+    <figure class="figure">
+        <img class="img-responsive img-fluid center-block" src="images/2-dragon3.png"/>
+        <figcaption class="figure-caption">Lens 3, focusing on the horns on the back of the dragon's head. Because this was a telephoto lens, the image had to be taken zoomed far away from the scene. As a result, there is little relative (camera z-position) distance between the surfaces of the dragon. The focusing was done on the dragon's horns, but the rest of the dragon is fairly in focus as well. Additionally, because of the small capturing angle of the lens, only the back wall is shown here -- in contrast to seeing both walls in the above wide angle lens image.</figcaption>
+    </figure>
+    
+    <figure class="figure">
+        <img class="img-responsive img-fluid center-block" src="images/2-dragon4.png"/>
+        <figcaption class="figure-caption">Lens 4, focusing on the middle of the middle bump of the dragon. The edges of the 'scales' appear fairly well defined. There is high contrast between that middle dark spot and the bright specular reflection above it. As noted in the previous parts, the edges of the lens warp the image. Because the fisheye lens captures a large hemisphere of the scene, the center of the image appears fairly realstic in proportions while the edges are out of proportion. The edges of the Cornell box are curved rather than straight.</figcaption>
+    </figure>
 
     <h2 align="middle">Part 3: Faster contrast-based autofocus (Extra credit)</h2>
     <p>As explained in Part 2, my original algorithm weakly protects against falling into local minima traps. In contrast to the naive approach of not keeping oversteps and never reversing directions in stepping, my algorithm tends to find better quality focusing depths. The outcome tends to be better using about the same amount of time.</p>
     <p>For creating the following two images, I had modified my algorithm to the naive approach. I am focusing on the top of the middle bump of the dragon:</p>
-    <div align="center">
-        <table style="width=100%">
-            <tr>
-                <td align="middle">
-                <img class="img-responsive" src="images/3-max1.png" width="640px" />
-                <figcaption align="middle">The naive algorithm. It seems that the specular shine of the metal produced a large enough variance to trap the <em>sensor_depth</em> step-based traversal. As a result, the image is blurry except for the large splotches of reflected light.</figcaption><br></td>
-            </tr>
-        </table>
-    </div>
-    <div align="center">
-        <table style="width=100%">
-            <tr>
-                <td align="middle">
-                <img class="img-responsive" src="images/3-max2.png" width="640px" />
-                <figcaption align="middle">The algorithm which does backsteps. At this angle, my original algorithm managed to avoid the local maxima from the specular shiny metal. Unfortunately, the top of the tail bump is not fully in focus. The middle section further down on the tail seems to have slightly sharper edges. (This image is rendered at the same zoom level as the above, the <em>sensor_depth</em> makes a large difference.</figcaption><br></td>
-            </tr>
-        </table>
-    </div>
+    <figure class="figure">
+        <img class="img-responsive img-fluid center-block" src="images/3-max1.png"/>
+        <figcaption class="figure-caption">The naive algorithm. It seems that the specular shine of the metal produced a large enough variance to trap the <em>sensor_depth</em> step-based traversal. As a result, the image is blurry except for the large splotches of reflected light.</figcaption>
+    </figure>
+    
+    <figure class="figure">
+        <img class="img-responsive img-fluid center-block" src="images/3-max2.png"/>
+        <figcaption class="figure-caption">The algorithm which does backsteps. At this angle, my original algorithm managed to avoid the local maxima from the specular shiny metal. Unfortunately, the top of the tail bump is not fully in focus. The middle section further down on the tail seems to have slightly sharper edges. (This image is rendered at the same zoom level as the above, the <em>sensor_depth</em> makes a large difference.</figcaption>
+    </figure>
 </div>
     <div id="pagefooter"></div>
 </div>
