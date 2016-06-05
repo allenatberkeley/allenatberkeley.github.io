@@ -1,0 +1,10 @@
+figure {
+    outline: 1px;
+}
+
+figure img {
+}
+
+figure figcaption {
+	margin: -2em;
+}
