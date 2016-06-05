@@ -13,10 +13,7 @@
     </script>
     <title>CS184 | Project 2</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-
-    <!-- Writeup CSS -->
-    <link rel="stylesheet" type="text/css" href="http://allenatberkeley.github.io/projects/cs184/writeup.css">
-
+    
     <!-- BLUE DUCK! -->
     <link rel="icon" type="image/png" sizes="32x32" href="http://allenatberkeley.github.io/images/duck.ico">
 
@@ -49,7 +46,7 @@
 
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part1-1.png"/>
-            <figcaption class="figure-caption center-block">A rendering of teapot.bez: my <code>BezierPatch::evaluate(...)</code> and <code>add2mesh(...)</code> seems to work!</figcaption>
+            <figcaption class="figure-caption center-block">A rendering of teapot.bez: my <code>BezierPatch::evaluate(...)</code> and <code>add2mesh(...)</code> seems to work!<br></figcaption>
         </figure>
 
     <h2 align="middle">Part 2: Average normals for half-edge meshes</h2>
@@ -58,27 +55,27 @@
 
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part2-dae0.png"/>
-            <figcaption class="figure-caption center-block">Dae teapot without smoothed normals. The surface of the teapot is blocky, as it is only being rendered using uninterpolated face normals.</figcaption>
+            <figcaption class="figure-caption center-block">Dae teapot without smoothed normals. The surface of the teapot is blocky, as it is only being rendered using uninterpolated face normals.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part2-dae1.png"/>
-            <figcaption class="figure-caption center-block">Wireframe dae teapot with smooth surface, as a result of interpolating the vertex normals.</figcaption>
+            <figcaption class="figure-caption center-block">Wireframe dae teapot with smooth surface, as a result of interpolating the vertex normals.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part2-dae2.png"/>
-            <figcaption class="figure-caption center-block">Dae teapot with smooth surface, as a result of interpolating the vertex normals.</figcaption>
+            <figcaption class="figure-caption center-block">Dae teapot with smooth surface, as a result of interpolating the vertex normals.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part2-bez1.png"/>
-            <figcaption class="figure-caption center-block">Wireframe bez teapot with smooth surface, as a result of interpolating the vertex normals.</figcaption>
+            <figcaption class="figure-caption center-block">Wireframe bez teapot with smooth surface, as a result of interpolating the vertex normals.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part2-bez2.png"/>
-            <figcaption class="figure-caption center-block">Bez teapot with smooth surface, as a result of interpolating the vertex normals.</figcaption>
+            <figcaption class="figure-caption center-block">Bez teapot with smooth surface, as a result of interpolating the vertex normals.<br></figcaption>
         </figure>
 
     <h2 align="middle">Part 3: Edge Flip</h2>
@@ -86,17 +83,17 @@
         <p>I drew a diagram of the edge flip in the code, to clarify the function for myself and for potential readers.</p>
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part3-diagram.png"/>
-            <figcaption class="figure-caption center-block">I modeled the edge-to-be-flipped as an Top-to-Botttom edge bisecting a quad into two triangles. This assignment of directions is arbitrary, but clarifies the operations necessary to flip the edge.</figcaption>
+            <figcaption class="figure-caption center-block">I modeled the edge-to-be-flipped as an Top-to-Botttom edge bisecting a quad into two triangles. This assignment of directions is arbitrary, but clarifies the operations necessary to flip the edge.<br></figcaption>
         </figure>
         <p>Because we are only flipping an existing edge, and not creating any new elements in the mesh, we do not need to call any of the new*() functions. To prepare for the edge flip, I get all of the necessary data structures. Then I reassign the structures accordingly: the given edge still points to the same halfedge, but the corresponding two halfedges have their vertex()'s and next()'s changed. Likewise, the face()'s of some strucutres are changed. To ensure correctness, the halfedge()'s of the top and bottom vertices are reassigned, in case they used to point at the given edge's halfedges. The next()'s of all of the involved halfedges are reassigned. Note that the left and right vertices' halfedge()'s do not have to be reassigned. A vertex only has to store one of it's halfedge()'s; the old halfedge()'s are still valid assignments.</p>
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part3-1.png"/>
-            <figcaption class="figure-caption center-block">A bunch of edges on the face of the teapot are flipped to make a face!</figcaption>
+            <figcaption class="figure-caption center-block">A bunch of edges on the face of the teapot are flipped to make a face!<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part3-2.png"/>
-            <figcaption class="figure-caption center-block">Edges on the lid of the teapot are flipped to make an interesting pattern. Additionally, the boundary case was tested and no boundary edges were flippable.</figcaption>
+            <figcaption class="figure-caption center-block">Edges on the lid of the teapot are flipped to make an interesting pattern. Additionally, the boundary case was tested and no boundary edges were flippable.<br></figcaption>
         </figure>
 
     <h2 align="middle">Part 4: Edge Split</h2>
@@ -104,24 +101,24 @@
 
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part4-diagram1.png"/>
-            <figcaption class="figure-caption center-block">The half edges are labeled according to their base vertex and the vertex to which they point. So for example <em>m2t</em> points from the midpoint to the top vertex, and <em>l2b</em> points from the left vertex to the bottom vertex. I do make some redundant variable assignments: this is for clarification purposes. Again, the directional labels are arbitrary, but help to clarify the necessary operations to split an edge.</figcaption>
+            <figcaption class="figure-caption center-block">The half edges are labeled according to their base vertex and the vertex to which they point. So for example <em>m2t</em> points from the midpoint to the top vertex, and <em>l2b</em> points from the left vertex to the bottom vertex. I do make some redundant variable assignments: this is for clarification purposes. Again, the directional labels are arbitrary, but help to clarify the necessary operations to split an edge.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part4-diagram2.png"/>
-            <figcaption class="figure-caption center-block">Extra Credit Boundary Case: Similar to the above digram, but this is for the boundary case! There are less assignments needed, but dealing with the boundary edges are a bit trickier.</figcaption>
+            <figcaption class="figure-caption center-block">Extra Credit Boundary Case: Similar to the above digram, but this is for the boundary case! There are less assignments needed, but dealing with the boundary edges are a bit trickier.<br></figcaption>
         </figure>
 
         <p>Basically, what I did for this part was the same as in Edge Flip. I first get all the relevant data structures. But then this time, I also allocate new structures by calling new*(). Then, I calculate the midpoint's position - it is the only new structure that requires a position assignment. Then, I go through the vertices, faces, and edges to set their appropriate halfedge()'s. Finally, I use the halfedge's <code>setNeighbors(...)</code> function compactly set each halfedge's pointers (iterators). While some of the assignment in <code>setNeighbors(...)</code> is redundant, it ensures correctness by requiring everything to be updated.</p>
         <p>I also handle the case where the edge to be split is on a boundary. In that case, less new structures are allocated into the mesh, but assignments are slightly trickier. Only the non-boundary face is split into two and receives a new edge; the boundary face is left alone. At the start, before getting the relevant data structures, we obtain <em>h</em> such that <em>h</em> is not on the boundary. This orients the triangle so that the face to be split is on the left side of the given edge, and the boundary face is on the right side of the given edge. Then, we obtain the relevant structures and the correct assignments.</p>
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part4-1.png"/>
-            <figcaption class="figure-caption center-block">Edge split demonstrated across multiple faces and edges on the wavy cube.</figcaption>
+            <figcaption class="figure-caption center-block">Edge split demonstrated across multiple faces and edges on the wavy cube.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part4-2.png"/>
-            <figcaption class="figure-caption center-block">Extra Credit Boundary Case: The boundary edges of the bez teapot are successfully split repeatedly. There are many repeated splits shown on the right side of the lid.</figcaption>
+            <figcaption class="figure-caption center-block">Extra Credit Boundary Case: The boundary edges of the bez teapot are successfully split repeatedly. There are many repeated splits shown on the right side of the lid.<br></figcaption>
         </figure>
 
     <h2 align="middle">Part 5: Upsampling via Loop Subdivision</h2>
@@ -130,7 +127,7 @@
         <p>Then, I computed the updated vertex positions of the edges and stored the values in the edges' newPosition. The values stored will become the positions of the newly allocated vertices from subdivision/edge-splitting. Again, I have the formula's fractional formulas pre-computed. Here, I mark the edges' isNew as false. In this section and the next, I drew small diagrams in the code comments for clarification, as in the previous parts.</p>
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part5-diagram.png"/>
-            <figcaption class="figure-caption center-block">A diagram to help with loop subdivision. The directions mentioned are arbitrary, but help to clarify the code.</figcaption>
+            <figcaption class="figure-caption center-block">A diagram to help with loop subdivision. The directions mentioned are arbitrary, but help to clarify the code.<br></figcaption>
         </figure>
         <p>Then, I split every old edge of the mesh. The old edge becomes the "top" edge of the split quad. The "left" and "right" edges are marked isNew as true, since they are new. However, even though it is newly allocated, the "bottom" edge is marked isNew as false, since it was originally part of the old edge. For the purposes of edge-flipping, it is an old edge. The newly created midpoint-vertex for each subdivision, returned by <code>splitEdge(...)</code>, is marked as isNew true.</p>
         <p>In this edge splitting section, I had to figure out how to iterate and split all of the edges of the original mesh and none of the new edges created by the splitting. This task was tougher than I realized, as it turned out that mesh.edgesEnd() returned an iterator and not a real reference value. This had the strange effect that the <em>end</em> variable increased whenever an edge was split, even if I only assign the <em>end</em> once as mesh.edgesEnd() once before the loop. Thus the end was every-increasing, leading to an infinite loop. So, while iterating through the original edges in the previous section (Computing the newPosition values), I add the edge to a list of <em>EdgeIters</em>s, called <em>edgesToSplit</em>. Then in this splitting section, I iterate through the list of EdgeIters, rather than through using the iterator provided by mesh.edgesBegin() and mesh.edgesEnd(). The list is finite and does not grow with each splitting.</p>
@@ -138,82 +135,82 @@
         <p>Finally all of the vertices' positions are updated. If the vertex is an vertex from the old mesh, with isNew false, it's position is updated with the value stored in the newPosition variable. Otherwise, if the vertex isNew, we assign it the value that was stored in it's old edge's newPosition variable. By construction of the previous parts' functions, the new vertex should naturally point to a halfedge whose edge contains the correct corresponding newPosition value. However, a small bug arose in my code. My new vertices did not all point to the correct halfedge whose edge had the newPosition value. I suspect that is becase my edge-flipping function "unstably" reassigns the vertices' halfedges, without respect to whether they are new or not. (This bug created interesting patterns in my meshes though.) To account for the "unstable" edge flip, I have an extra condition/loop inside this section. I have a HalfedgeIter traverse the incident edges to the vertex. The traversal stops when a non-New non-Zero-newPosition edge is found -- which is guaranteed to exist because it is exactly the edge that the new vertex was supposed to point to, before the edge flipping. This resolved the bug and thus subdivision happens correctly</p>
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part5-ok1.png"/>
-            <figcaption class="figure-caption center-block">A subdivided teapot.</figcaption>
+            <figcaption class="figure-caption center-block">A subdivided teapot.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part5-ok2.png"/>
-            <figcaption class="figure-caption center-block">A teapot even more subdivided, zoomed in. Oh, my fps!</figcaption>
+            <figcaption class="figure-caption center-block">A teapot even more subdivided, zoomed in. Oh, my fps!<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part5-ok22.png"/>
-            <figcaption class="figure-caption center-block">A teapot, super subdivided. R.I.P. fps.</figcaption>
+            <figcaption class="figure-caption center-block">A teapot, super subdivided. R.I.P. fps.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part5-ok3.png"/>
-            <figcaption class="figure-caption center-block">A torus, subdivided many, many times. Interestingly, the edges form a moire pattern!</figcaption>
+            <figcaption class="figure-caption center-block">A torus, subdivided many, many times. Interestingly, the edges form a moire pattern!<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part5-error1.png"/>
-            <figcaption class="figure-caption center-block">A picture of the bug I experienced.</figcaption>
+            <figcaption class="figure-caption center-block">A picture of the bug I experienced.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part5-error2.png"/>
-            <figcaption class="figure-caption center-block">Another picture of the bug I experienced.</figcaption>
+            <figcaption class="figure-caption center-block">Another picture of the bug I experienced.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part5-error3.png"/>
-            <figcaption class="figure-caption center-block">Yet another picture of the bug I experienced, like a spikey snow flake!</figcaption>
+            <figcaption class="figure-caption center-block">Yet another picture of the bug I experienced, like a spikey snow flake!<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part5-error4.png"/>
-            <figcaption class="figure-caption center-block">A vaguely creepy, buggy rendering of Max Planck, :(.</figcaption>
+            <figcaption class="figure-caption center-block">A vaguely creepy, buggy rendering of Max Planck, :(.<br></figcaption>
         </figure>
         <p>Here, I tried subdividing cube.dae. After several subdivision, the cube takes on an asymmetric shape. </p>
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part5-cube1.png"/>
-            <figcaption class="figure-caption center-block">An asymmetrically subdivided cube.</figcaption>
+            <figcaption class="figure-caption center-block">An asymmetrically subdivided cube.<br></figcaption>
         </figure>
         <p>This arises because of the original mesh topology on the cube. The subdivision algorithm smoothes out vertices higher degree more than vertices with lower degree. So, in the low-poly cube, the higher degree vertices get smushed together moreso than the low degree vertices, leading to asymmetry. This asymmetry in subdivision can be solved by equalizing the vertices' degrees as much as possible before subdivision. Simply flipping edges before subdividing will not solve the problem: the original topology only has a limited amount of edges to go around, some vertices will always have a different degree than other vertices. The subdivision would produce an asymmetric mesh in that case. However, one can also split the cube's face edges before subdivision. The splitting of the edges can be used to equalize the degrees of all the original vertices. This allows the mesh to subdivide symmetrically. When the cube's respective symmetric vertices have the same degree, the cube subdivides symmetrically.</p>
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part5-cube2-1.png"/>
-            <figcaption class="figure-caption center-block">In this case, I only flipped edges before subdividing. The result is still an asymmetric mesh.</figcaption>
+            <figcaption class="figure-caption center-block">In this case, I only flipped edges before subdividing. The result is still an asymmetric mesh.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part5-cube2-2.png"/>
-            <figcaption class="figure-caption center-block">In this case, I only flipped edges before subdividing. The result is still an asymmetric mesh.</figcaption>
+            <figcaption class="figure-caption center-block">In this case, I only flipped edges before subdividing. The result is still an asymmetric mesh.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part5-cube2-3.png"/>
-            <figcaption class="figure-caption center-block">In this case, I only flipped edges before subdividing. The result is still an asymmetric mesh.</figcaption>
+            <figcaption class="figure-caption center-block">In this case, I only flipped edges before subdividing. The result is still an asymmetric mesh.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part5-cube2-4.png"/>
-            <figcaption class="figure-caption center-block">In this case, I only flipped edges before subdividing. The result is still an asymmetric mesh.</figcaption>
+            <figcaption class="figure-caption center-block">In this case, I only flipped edges before subdividing. The result is still an asymmetric mesh.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part5-cube3-1.png"/>
-            <figcaption class="figure-caption center-block">In this case, I split the cube's face edges before subdividing. The result is a symmetric mesh.</figcaption>
+            <figcaption class="figure-caption center-block">In this case, I split the cube's face edges before subdividing. The result is a symmetric mesh.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part5-cube3-2.png"/>
-            <figcaption class="figure-caption center-block">In this case, I split the cube's face edges before subdividing. The result is a symmetric mesh.</figcaption>
+            <figcaption class="figure-caption center-block">In this case, I split the cube's face edges before subdividing. The result is a symmetric mesh.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part5-cube3-3.png"/>
-            <figcaption class="figure-caption center-block">In this case, I split the cube's face edges before subdividing. The result is a symmetric mesh.</figcaption>
+            <figcaption class="figure-caption center-block">In this case, I split the cube's face edges before subdividing. The result is a symmetric mesh.<br></figcaption>
         </figure>
 
     <h2 align="middle">Part 6: Fun with Shaders</h2>
@@ -221,37 +218,37 @@
         <p>I simply referred to the given formulas and the lecture slides to implement this part. For Phong shading, I calculated the light direction vector, reflection direction vector, and the eye direction vector. Then, I used those values to calculate the specular highlights: specular is first the max of (reflection direction dot eye direction, and 0.0), then the specular is raised a certain power and multiplied by a certain coefficient. (I defined spec_power as 8.0 and spec_coeff as 1.0 at the top of the frag file.) The diffuse light is the absolute value of eye direction dot the normalized normal. The ambient light was chosen as a very dark gray. Phong shading adds together the specular, diffuse, and ambient lights.</p>
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part6-phong.png"/>
-            <figcaption class="figure-caption center-block">Red Phong shading of the teapot, with mesh subdivision to make the surface smoother. The specular highlight was raised to a the power of 8.0 to make the specular lighting spot tight and concentrated. Lower powers make the specular highlight cover a majority of the teapot at this angle.</figcaption>
+            <figcaption class="figure-caption center-block">Red Phong shading of the teapot, with mesh subdivision to make the surface smoother. The specular highlight was raised to a the power of 8.0 to make the specular lighting spot tight and concentrated. Lower powers make the specular highlight cover a majority of the teapot at this angle.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part6-phong2.png"/>
-            <figcaption class="figure-caption center-block">Red Phong shading of the teapot, with mesh subdivision to make the surface smoother. This specular highlight was raised to a high power (24.0) to make the specular lighting spot even tighter and more concentrated.</figcaption>
+            <figcaption class="figure-caption center-block">Red Phong shading of the teapot, with mesh subdivision to make the surface smoother. This specular highlight was raised to a high power (24.0) to make the specular lighting spot even tighter and more concentrated.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part6-phong3.png"/>
-            <figcaption class="figure-caption center-block">Red Phong shading of the cow, with largely noticeable specular highlights.</figcaption>
+            <figcaption class="figure-caption center-block">Red Phong shading of the cow, with largely noticeable specular highlights.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part6-phong4.png"/>
-            <figcaption class="figure-caption center-block">A Phong shading of a subdivided torus.</figcaption>
+            <figcaption class="figure-caption center-block">A Phong shading of a subdivided torus.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part6-phrong1.png"/>
-            <figcaption class="figure-caption center-block">Rainbow Teapot!: A cool, but incorrect implementation of phong shading! I turned this into an extra selectable shader later on for extra credit.</figcaption>
+            <figcaption class="figure-caption center-block">Rainbow Teapot!: A cool, but incorrect implementation of phong shading! I turned this into an extra selectable shader later on for extra credit.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part6-phrong2.png"/>
-            <figcaption class="figure-caption center-block">Rainbow Cow!: A cool, but incorrect implementation of phong shading! I turned this into an extra selectable shader later on for extra credit.</figcaption>
+            <figcaption class="figure-caption center-block">Rainbow Cow!: A cool, but incorrect implementation of phong shading! I turned this into an extra selectable shader later on for extra credit.<br></figcaption>
         </figure>
         <p>This section was fairly straight forward. For environment mapping, I calculated the reflection direction as given by the formula in the specs. Then, I calculated theta and phi as according to their 3D geometric meanings, using the atan(2) and acos() functions. Then, I converted theta and phi to uv-coordinates using the other forumula in the spces. The uv-coordinates were then passed into texture2D of the envmap, in order to obtain the corresponding texel color. The color is returned for texture2D as an RGBA value, so I had to convert it to the corresponding RGB value, before finally returning the vec3 color.</p>
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part6-envmap1.png"/>
-            <figcaption class="figure-caption center-block">Teapot with the given environment map. This teapot looks like it's made of metal!</figcaption>
+            <figcaption class="figure-caption center-block">Teapot with the given environment map. This teapot looks like it's made of metal!<br></figcaption>
         </figure>
 
         <p>I did quite a bit of extra credit work for this part and the next part combined, so I'll put that into a new part by itself! It's below Part 7 below.</p>
@@ -261,54 +258,54 @@
         <p>I made a 3D Pikachu! (Sort of. It's not particularly spectacular.)</p>
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part7-1.png"/>
-            <figcaption class="figure-caption center-block">My Pikachu collada/dae mesh! It took several multiple-hour iterations to get a good balance of polygons.</figcaption>
+            <figcaption class="figure-caption center-block">My Pikachu collada/dae mesh! It took several multiple-hour iterations to get a good balance of polygons.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part7-11.png"/>
-            <figcaption class="figure-caption center-block">A red-phong shaded Pikachu.</figcaption>
+            <figcaption class="figure-caption center-block">A red-phong shaded Pikachu.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part7-2.png"/>
-            <figcaption class="figure-caption center-block">Subdividing my Pikachu mesh is a bad idea. The sharp ears become horn-like spikes. The tail becomes a crumpled mess. And, just meh.</figcaption>
+            <figcaption class="figure-caption center-block">Subdividing my Pikachu mesh is a bad idea. The sharp ears become horn-like spikes. The tail becomes a crumpled mess. And, just meh.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part7-3.png"/>
-            <figcaption class="figure-caption center-block">Further subdivision makes the Pikachu mesh look even worse. This is likely because a Pikachu is not a natural object and has jagged edges.</figcaption>
+            <figcaption class="figure-caption center-block">Further subdivision makes the Pikachu mesh look even worse. This is likely because a Pikachu is not a natural object and has jagged edges.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part7-4.png"/>
-            <figcaption class="figure-caption center-block">Further subdivision makes the Pikachu mesh look even worse. This is likely because a Pikachu is not a natural object and has jagged edges.</figcaption>
+            <figcaption class="figure-caption center-block">Further subdivision makes the Pikachu mesh look even worse. This is likely because a Pikachu is not a natural object and has jagged edges.<br></figcaption>
         </figure>
 
         <h2 align="middle">Part 8: Extra Stuff from Part 6 and 7!</h2>
         <p>I uv-unwrapped my Pikachu mesh in Blender, and 3D texture-painted it.</p>
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part8-1.png"/>
-            <figcaption class="figure-caption center-block">My Pikachu in Blender! It turns out that Pikachu has a pretty creepy face before the whites of his eyes are drawn in: they're just black blobs, and the face looks like something from JigSaw. No picture is provided of that for your convenience.</figcaption>
+            <figcaption class="figure-caption center-block">My Pikachu in Blender! It turns out that Pikachu has a pretty creepy face before the whites of his eyes are drawn in: they're just black blobs, and the face looks like something from JigSaw. No picture is provided of that for your convenience.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part8-2-1.png"/>
-            <figcaption class="figure-caption center-block">I tried applying that complex UV-texture map in meshEdit, but it didn't work. I've tried multiple implementations, but couldn't get the textures to map to the triangles correctly. I suspect that the frag file does not have enough positional information to correctly map the texture by triangles?</figcaption>
+            <figcaption class="figure-caption center-block">I tried applying that complex UV-texture map in meshEdit, but it didn't work. I've tried multiple implementations, but couldn't get the textures to map to the triangles correctly. I suspect that the frag file does not have enough positional information to correctly map the texture by triangles?<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part8-2-2.png"/>
-            <figcaption class="figure-caption center-block">I tried applying that complex UV-texture map in meshEdit, but it didn't work. I've tried multiple implementations, but couldn't get the textures to map to the triangles correctly. I suspect that the frag file does not have enough positional information to correctly map the texture by triangles?</figcaption>
+            <figcaption class="figure-caption center-block">I tried applying that complex UV-texture map in meshEdit, but it didn't work. I've tried multiple implementations, but couldn't get the textures to map to the triangles correctly. I suspect that the frag file does not have enough positional information to correctly map the texture by triangles?<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part8-2-3.png"/>
-            <figcaption class="figure-caption center-block">Still not working... :(</figcaption>
+            <figcaption class="figure-caption center-block">Still not working... :(<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part8-2-4.png"/>
-            <figcaption class="figure-caption center-block">Nope :(</figcaption>
+            <figcaption class="figure-caption center-block">Nope :(<br></figcaption>
         </figure>
 
         <p>However, I made some extra shaders!</p>
@@ -318,75 +315,75 @@
         <p>I made a Pikachu face texture for the teapot. (This is a different texture than the UV-mapping from Blender).</p>
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part8-3-1.png"/>
-            <figcaption class="figure-caption center-block">Bright yellow Pikachu teapot, with specular highlights!</figcaption>
+            <figcaption class="figure-caption center-block">Bright yellow Pikachu teapot, with specular highlights!<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part8-3-2.png"/>
-            <figcaption class="figure-caption center-block">Dull yellow Pikachu teapot, with specular highlights and diffuse shading!</figcaption>
+            <figcaption class="figure-caption center-block">Dull yellow Pikachu teapot, with specular highlights and diffuse shading!<br></figcaption>
         </figure>
         <p>I also made my own version of Weilun's YinYang shader/texture!</p>
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part8-4-1.png"/>
-            <figcaption class="figure-caption center-block">A teapot with the YinYang symbol on it! This also uses specular and diffuse lighting.</figcaption>
+            <figcaption class="figure-caption center-block">A teapot with the YinYang symbol on it! This also uses specular and diffuse lighting.<br></figcaption>
         </figure>
         <p>Then, I combined the Pikachu Face texture, the envMap, and the YinYang symbol onto one single teapot. Also, diffuse and specular lighting was included. To do this, I used a lot of if-statements/conditionals.</p>
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part8-5-1.png"/>
-            <figcaption class="figure-caption center-block">A "metal" teapot with a YinYang symbol on one side, and a Pikachu face on the other. Notice that the YinYang symbol appears to be "matte." The color contribution to the teapot of the envMap reflection inside the YinYang symbol is reduced. This decrease of reflected like makes that part of the teapot appear to be made of a different, somewhat matte material.</figcaption>
+            <figcaption class="figure-caption center-block">A "metal" teapot with a YinYang symbol on one side, and a Pikachu face on the other. Notice that the YinYang symbol appears to be "matte." The color contribution to the teapot of the envMap reflection inside the YinYang symbol is reduced. This decrease of reflected like makes that part of the teapot appear to be made of a different, somewhat matte material.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part8-5-2.png"/>
-            <figcaption class="figure-caption center-block">The other side of the "metal" teapot has a Pikachu face. The pikachu face, still having contribution from the envMap reflection, looks as if it is a shiny vinyl/plastic sticker on the side of the teapot.</figcaption>
+            <figcaption class="figure-caption center-block">The other side of the "metal" teapot has a Pikachu face. The pikachu face, still having contribution from the envMap reflection, looks as if it is a shiny vinyl/plastic sticker on the side of the teapot.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part8-5-3.png"/>
-            <figcaption class="figure-caption center-block">The view from above.</figcaption>
+            <figcaption class="figure-caption center-block">The view from above.<br></figcaption>
         </figure>
 
         <p>I was trying the above combo-texture/shader on different objects, when I saw an opportunity: The cow! This is yet another option available within frag.</p>
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part8-6-1.png"/>
-            <figcaption class="figure-caption center-block">The cow, shiny with the envMap, with a Pikachu face!</figcaption>
+            <figcaption class="figure-caption center-block">The cow, shiny with the envMap, with a Pikachu face!<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part8-6-2.png"/>
-            <figcaption class="figure-caption center-block">But wait, the back of the cow's head also has a Pikachu face. There shall be no Voldemorts on my Pikachu cow!</figcaption>
+            <figcaption class="figure-caption center-block">But wait, the back of the cow's head also has a Pikachu face. There shall be no Voldemorts on my Pikachu cow!<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part8-6-3.png"/>
-            <figcaption class="figure-caption center-block">Using more if-statements, I adjusted the Pikachu face to only show up on the front of the cow's face.</figcaption>
+            <figcaption class="figure-caption center-block">Using more if-statements, I adjusted the Pikachu face to only show up on the front of the cow's face.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part8-6-4.png"/>
-            <figcaption class="figure-caption center-block">The shiny Pikachu-cow is fixed!</figcaption>
+            <figcaption class="figure-caption center-block">The shiny Pikachu-cow is fixed!<br></figcaption>
         </figure>
 
         <p>Furthermore, I reimplemented the earlier rainbow-bug of the Phong shading. But this time, it's a feature!</p>
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part6-phrong2.png"/>
-            <figcaption class="figure-caption center-block">The rainbow cow from before.</figcaption>
+            <figcaption class="figure-caption center-block">The rainbow cow from before.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part8-7-1.png"/>
-            <figcaption class="figure-caption center-block">A rainbow-shaded Pikachu model. It looks as if the Pikachu is crystalized.</figcaption>
+            <figcaption class="figure-caption center-block">A rainbow-shaded Pikachu model. It looks as if the Pikachu is crystalized.<br></figcaption>
         </figure>
 
         <p>Finally, I combined my rainbow shader with the Pikachu-cow to get:</p>
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part-final1.png"/>
-            <figcaption class="figure-caption center-block">This beautiful abomination.</figcaption>
+            <figcaption class="figure-caption center-block">This beautiful abomination.<br></figcaption>
         </figure>
 
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part-final2.png"/>
-            <figcaption class="figure-caption center-block">So majestic.</figcaption>
+            <figcaption class="figure-caption center-block">So majestic.<br></figcaption>
         </figure>
 </div>
     <div id="pagefooter"></div>

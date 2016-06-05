@@ -13,10 +13,7 @@
     </script>
     <title>CS184 | Project 1</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-
-    <!-- Writeup CSS -->
-    <link rel="stylesheet" type="text/css" href="http://allenatberkeley.github.io/projects/cs184/writeup.css">
-
+    
     <!-- BLUE DUCK! -->
     <link rel="icon" type="image/png" sizes="32x32" href="http://allenatberkeley.github.io/images/duck.ico">
 
@@ -47,7 +44,7 @@
         <p>My line rasterizing algorithm was based on Po-Han Lin's<em> Extremely Fast Line Algorithm </em>. The Algorithm is able to quickly rasterize lines with slopes in all octants of the Cartesian plane. First, the algorithm reduces the eight slope cases into four cases by ensuring the absolute value of the slope is less than or equal to 1 (by swapping x and y if dy > dx). Then it determines the directions (+/-x and +/-y) in which the line should be rasterize and the rasterization's ending iteration. The function then rasterizes the line with two separate cases: If the slope was less than or equal to 1 originally, then increment by one x-unit per iteration. If the slope was above 1 originally and then the x and y coordinates were swapped, then increment by one y-unit per iteration instead. This ensures that all pixels in a line are rasterized and no pixel is skipped because either the x-unit or y-unit was incrementing pixels faster than the other.</p>
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part1.png"/>
-            <figcaption class="figure-caption center-block">An interesting part of test2.svg.</figcaption>
+            <figcaption class="figure-caption center-block">An interesting part of test2.svg.<br></figcaption>
         </figure>
 
     <h2 align="middle">Part 2: Rasterizing single-color triangles</h2>
@@ -82,27 +79,27 @@
 
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part2-1.png"/>
-            <figcaption class="figure-caption center-block">Naive line-by-line rasterization.</figcaption>
+            <figcaption class="figure-caption center-block">Naive line-by-line rasterization.<br></figcaption>
         </figure>
 
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part2-2.png"/>
-            <figcaption class="figure-caption center-block">Optimized line-by-line rasterization.</figcaption>
+            <figcaption class="figure-caption center-block">Optimized line-by-line rasterization.<br></figcaption>
         </figure>
 
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part2-3.png"/>
-            <figcaption class="figure-caption center-block">Sampling-based rasterization.</figcaption>
+            <figcaption class="figure-caption center-block">Sampling-based rasterization.<br></figcaption>
         </figure>
 
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part2-line.png"/>
-            <figcaption class="figure-caption center-block">Interesting part of test4.svg with line-by-line rasterization.</figcaption>
+            <figcaption class="figure-caption center-block">Interesting part of test4.svg with line-by-line rasterization.<br></figcaption>
         </figure>
 
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part2-sample.png"/>
-            <figcaption class="figure-caption center-block">Interesting part of test4.svg with sampling-based rasterization.</figcaption>
+            <figcaption class="figure-caption center-block">Interesting part of test4.svg with sampling-based rasterization.<br></figcaption>
         </figure>
 
     <h2 align="middle">Part 3: Antialiasing triangles</h2>
@@ -110,27 +107,27 @@
 
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part3-bug.png"/>
-            <figcaption class="figure-caption center-block">A buggy implementation of super sampling and the <em>superbuffer</em> has a moire effect.</figcaption>
+            <figcaption class="figure-caption center-block">A buggy implementation of super sampling and the <em>superbuffer</em> has a moire effect.<br></figcaption>
         </figure>
 
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part3-1.png"/>
-            <figcaption class="figure-caption center-block">Supersampling rate 1.</figcaption>
+            <figcaption class="figure-caption center-block">Supersampling rate 1.<br></figcaption>
         </figure>
 
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part3-4.png"/>
-            <figcaption class="figure-caption center-block">Supersampling rate 4.</figcaption>
+            <figcaption class="figure-caption center-block">Supersampling rate 4.<br></figcaption>
         </figure>
 
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part3-9.png"/>
-            <figcaption class="figure-caption center-block">Supersampling rate 9.</figcaption>
+            <figcaption class="figure-caption center-block">Supersampling rate 9.<br></figcaption>
         </figure>
 
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part3-16.png"/>
-            <figcaption class="figure-caption center-block">Supersampling rate 16.</figcaption>
+            <figcaption class="figure-caption center-block">Supersampling rate 16.<br></figcaption>
         </figure>
 
     <h2 align="middle">Part 4: Transforms</h2>
@@ -140,34 +137,34 @@
 
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part4-extra.png"/>
-            <figcaption class="figure-caption center-block">test4.svg mirrored, rotated 60 degrees clockwise, zoomed in, translated, and supersampled at 16 samples.</figcaption>
+            <figcaption class="figure-caption center-block">test4.svg mirrored, rotated 60 degrees clockwise, zoomed in, translated, and supersampled at 16 samples.<br></figcaption>
         </figure>
 
         <p>I created a new svg of a colored arrow head. It has a group of colortri's which are transformed upon.</p>
 
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part4-0.png"/>
-            <figcaption class="figure-caption center-block">The original image grouping G.</figcaption>
+            <figcaption class="figure-caption center-block">The original image grouping G.<br></figcaption>
         </figure>
 
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part4-1.png"/>
-            <figcaption class="figure-caption center-block">G' = rotate(45 250 320) * G</figcaption>
+            <figcaption class="figure-caption center-block">G' = rotate(45 250 320) * G<br></figcaption>
         </figure>
 
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part4-2.png"/>
-            <figcaption class="figure-caption center-block">G'' = scale(0.5 0.5) * G'</figcaption>
+            <figcaption class="figure-caption center-block">G'' = scale(0.5 0.5) * G'<br></figcaption>
         </figure>
 
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part4-3.png"/>
-            <figcaption class="figure-caption center-block">G^(3) = translate(100 200) * G''</figcaption>
+            <figcaption class="figure-caption center-block">G^(3) = translate(100 200) * G''<br></figcaption>
         </figure>
 
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part4-4.png"/>
-            <figcaption class="figure-caption center-block">G^(4) = rotate(-120 240 320) * G^(4)</figcaption>
+            <figcaption class="figure-caption center-block">G^(4) = rotate(-120 240 320) * G^(4)<br></figcaption>
         </figure>
 
     <h2 align="middle">Part 5: Barycentric coordinates</h2>
@@ -177,22 +174,22 @@
 
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part5-bug1.png"/>
-            <figcaption class="figure-caption center-block">This was a bug that happened when I did not reverse the normalization of the uv-coordinates correctly during the interpolation process.</figcaption>
+            <figcaption class="figure-caption center-block">This was a bug that happened when I did not reverse the normalization of the uv-coordinates correctly during the interpolation process.<br></figcaption>
         </figure>
 
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part5-bug2.png"/>
-            <figcaption class="figure-caption center-block">This was another bug that happened when I did not reverse the normalization of the uv-coordinates correctly during the interpolation process.</figcaption>
+            <figcaption class="figure-caption center-block">This was another bug that happened when I did not reverse the normalization of the uv-coordinates correctly during the interpolation process.<br></figcaption>
         </figure>
 
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part5-example.png"/>
-            <figcaption class="figure-caption center-block">Example: Triangle with solid colors at the vertices and interpolated gradient in the center.</figcaption>
+            <figcaption class="figure-caption center-block">Example: Triangle with solid colors at the vertices and interpolated gradient in the center.<br></figcaption>
         </figure>
 
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part5-1.png"/>
-            <figcaption class="figure-caption center-block">test7.svg with default viewing parameters and sample rate 1.</figcaption>
+            <figcaption class="figure-caption center-block">test7.svg with default viewing parameters and sample rate 1.<br></figcaption>
         </figure>
 
     <h2 align="middle">Part 6: Pixel sampling for texture mapping</h2>
@@ -201,32 +198,32 @@
         <p>In general, bilinear pixel interpolation sampling does a much better job that nearest pixel sampling in that bilinear provides a smoother and anti-aliased image. At close to 1 pixel per 1 texel resolutions, and multiple pixels per texel (magnification), bilinear provides much better results than nearest pixel - having better anti-aliasing, less jaggies. If the image was magnified to an extreme degree however, bilinear may make the image overly blurry. Additionally when the image is zoomed out very far, meaning 1 pixel per many texels, there is little difference between nearest pixel and bilinear methods as they both do not anti-alias much.</p>
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part6-1np.png"/>
-            <figcaption class="figure-caption center-block">Nearest pixel at 1 sample per pixel. Note the jaggies on the campanile's bars and on the clock hands. There is a moire effect around the ledges.</figcaption>
+            <figcaption class="figure-caption center-block">Nearest pixel at 1 sample per pixel. Note the jaggies on the campanile's bars and on the clock hands. There is a moire effect around the ledges.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part6-1bi.png"/>
-            <figcaption class="figure-caption center-block">Bilinear at 1 sample per pixel. The jaggies are mostly gone, but the image in general seems a little blurry. The moire effect is reduced.</figcaption>
+            <figcaption class="figure-caption center-block">Bilinear at 1 sample per pixel. The jaggies are mostly gone, but the image in general seems a little blurry. The moire effect is reduced.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part6-16np.png"/>
-            <figcaption class="figure-caption center-block">Nearest pixel at 16 samples per pixel. The jaggies are mostly gone from the capanile's bars, but the ledges and the clock's shadow still have obvious jaggies.</figcaption>
+            <figcaption class="figure-caption center-block">Nearest pixel at 16 samples per pixel. The jaggies are mostly gone from the capanile's bars, but the ledges and the clock's shadow still have obvious jaggies.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part6-16bi.png"/>
-            <figcaption class="figure-caption center-block">Bilinear at 16 sample per pixel. The jaggies are again mostly gone, and the image seems slightly sharper than with only 1 sample per pixel (without introducing jaggies). There is still a very slight moire effect at the top ledge of the campanile.</figcaption>
+            <figcaption class="figure-caption center-block">Bilinear at 16 sample per pixel. The jaggies are again mostly gone, and the image seems slightly sharper than with only 1 sample per pixel (without introducing jaggies). There is still a very slight moire effect at the top ledge of the campanile.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part6-littlenp.png"/>
-            <figcaption class="figure-caption center-block">There is not much difference between nearest pixel and bilinear at this zoom level.</figcaption>
+            <figcaption class="figure-caption center-block">There is not much difference between nearest pixel and bilinear at this zoom level.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part6-littlebi.png"/>
-            <figcaption class="figure-caption center-block">There is not much difference between nearest pixel and bilinear at this zoom level.</figcaption>
+            <figcaption class="figure-caption center-block">There is not much difference between nearest pixel and bilinear at this zoom level.<br></figcaption>
         </figure>
 
     <h2 align="middle">Part 7: Level sampling with mipmaps for texture mapping</h2>
@@ -234,32 +231,32 @@
         <p>Then in texture.cpp, I implement the <code>Texture::get_level(...)</code> according to the formula provided in class. When trilinear filtering was selected (L_LINEAR), <code>Texture::sample(...)</code> calculates the texel value at two separate mipmap level and then interpolates between them using a weighted sum to obtain and return the filtered sample color. I optimized the level sampling methods to calculate the values for that lsm-option only when necessary. For example, only when ( sp.lsm == L_LINEAR ) do I call the sampling methods again on a higher level. Redundant calculations were factored out as well, including the square root used in obtaining the level values.</p>
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part7-np-0.png"/>
-            <figcaption class="figure-caption center-block">Nearest pixel and 0 level at 1 sample per pixel, at a zoomed out viewpoint.</figcaption>
+            <figcaption class="figure-caption center-block">Nearest pixel and 0 level at 1 sample per pixel, at a zoomed out viewpoint.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part7-bi-0.png"/>
-            <figcaption class="figure-caption center-block">Bilinear and 0 level at 1 sample per pixel, at a zoomed out viewpoint. The image is a little more anti-aliased as compared to the previous one.</figcaption>
+            <figcaption class="figure-caption center-block">Bilinear and 0 level at 1 sample per pixel, at a zoomed out viewpoint. The image is a little more anti-aliased as compared to the previous one.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part7-np-near.png"/>
-            <figcaption class="figure-caption center-block">Nearest pixel and nearest level at 1 sample per pixel, at a zoomed out viewpoint. Some choppy, moire-like effects appear around some of the edges (high frequency areas). </figcaption>
+            <figcaption class="figure-caption center-block">Nearest pixel and nearest level at 1 sample per pixel, at a zoomed out viewpoint. Some choppy, moire-like effects appear around some of the edges (high frequency areas). <br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part7-bi-near.png"/>
-            <figcaption class="figure-caption center-block">Bilinear and nearest level at 1 sample per pixel, at a zoomed out viewpoint. The image is relatively smooth and looks anti-aliased.</figcaption>
+            <figcaption class="figure-caption center-block">Bilinear and nearest level at 1 sample per pixel, at a zoomed out viewpoint. The image is relatively smooth and looks anti-aliased.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part7-np-tri.png"/>
-            <figcaption class="figure-caption center-block">Nearest pixel and linear interpolation of two levels at 1 sample per pixel, at a zoomed out viewpoint. There is some definite artifacting occuring, and a moire effect is visible.</figcaption>
+            <figcaption class="figure-caption center-block">Nearest pixel and linear interpolation of two levels at 1 sample per pixel, at a zoomed out viewpoint. There is some definite artifacting occuring, and a moire effect is visible.<br></figcaption>
         </figure>
         
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/part7-bi-tri.png"/>
-            <figcaption class="figure-caption center-block">Bilinear and linear interpolation of two levels (Trilinear filtering) at 1 sample per pixel, at a zoomed out viewpoint. The image looks pretty smooth and well anti-aliased.</figcaption>
+            <figcaption class="figure-caption center-block">Bilinear and linear interpolation of two levels (Trilinear filtering) at 1 sample per pixel, at a zoomed out viewpoint. The image looks pretty smooth and well anti-aliased.<br></figcaption>
         </figure>
 
     <h2 align="middle">Part 8: My drawing</h2>
@@ -269,7 +266,7 @@
 
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/julia.png"/>
-            <figcaption class="figure-caption center-block">An illustration of a Julia set, generated from fractal.cpp.</figcaption>
+            <figcaption class="figure-caption center-block">An illustration of a Julia set, generated from fractal.cpp.<br></figcaption>
         </figure>
 </div>
     <div id="pagefooter"></div>
