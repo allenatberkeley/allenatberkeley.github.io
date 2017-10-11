@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+          crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous"></script>
+
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_CHTML">
+    </script>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+
+    <title>Colorizing the Prokudin-Gorskii Collection</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+    <style>.col-xs-5ths,
+    .col-sm-5ths,
+    .col-md-5ths,
+    .col-lg-5ths {
+        position: relative;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .col-xs-5ths {
+        width: 20%;
+        float: left;
+    }
+
+    @media (min-width: 768px) {
+        .col-sm-5ths {
+            width: 20%;
+            float: left;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .col-md-5ths {
+            width: 20%;
+            float: left;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .col-lg-5ths {
+            width: 20%;
+            float: left;
+        }
+    }</style>
+</head>
+<body>
+<div class="container">
+    <div class="page-header" id="Introduction">
+        <h1>CS194-26 | Colorizing the Prokudin-Gorskii Collection<br>
+        <small>Allen Zeng, CS194-26-aec</small><br>
+        </h1>
+        <h2><small>Large outputs rescaled to less than 1500px height due to 25MB limit.</small></h2>
+                    <!-- <a href="out_basic/cathedral_out.jpg">
+                    <img src="out_basic/cathedral_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <a href="out_basic/emir_out.jpg">
+                    <img src="out_basic/emir_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <a href="out_basic/harvesters_out.jpg">
+                    <img src="out_basic/harvesters_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <a href="out_basic/icon_out.jpg">
+                    <img src="out_basic/icon_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <a href="out_basic/lady_out.jpg">
+                    <img src="out_basic/lady_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <a href="out_basic/monastery_out.jpg">
+                    <img src="out_basic/monastery_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <a href="out_basic/nativity_out.jpg">
+                    <img src="out_basic/nativity_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <a href="out_basic/self_portrait_out.jpg">
+                    <img src="out_basic/self_portrait_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <a href="out_basic/settlers_out.jpg">
+                    <img src="out_basic/settlers_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <a href="out_basic/three_generations_out.jpg">
+                    <img src="out_basic/three_generations_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <a href="out_basic/train_out.jpg">
+                    <img src="out_basic/train_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <a href="out_basic/turkmen_out.jpg">
+                    <img src="out_basic/turkmen_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <a href="out_basic/village_out.jpg">
+                    <img src="out_basic/village_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <a href="out_basic/book_out.jpg">
+                    <img src="out_basic/book_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <a href="out_basic/house_out.jpg">
+                    <img src="out_basic/house_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <a href="out_basic/closet_out.jpg">
+                    <img src="out_basic/closet_out.jpg" class="img-responsive center-block" width="240px"></a> -->
+        <div class="col-sm-6">
+            <h2>Premise</h2>
+            <p>
+                The Prokudin-Gorskii Collection features copies of glass plates, where each copy consists of three separate images that were taken with different filters. The three separate images correspond to different color channels. For this project, the top image corresponds to blue, the middle to green, and the bottom to red. The goal of this project is to automatically align the three images for the various plates using fixed parameters among all images. Meaning that parameters are chosen at the start of the algorithm, and then the same algorithm is applied to all plates.
+            </p>
+
+            <h3>Algorithm Overview</h3>
+            <p>
+                The skeleton of the algorithm is as follows. First, the three panel plate is separated into three separate and equally sized 2D image matrices. Each 2D matrix represents one color channel. Then the three matrices are aligned, and stacked into one final image. Different image processing techniques can be applied between those steps, which we will discuss later. The main part of this algorithm is the alignment function.
+                <br><br>
+                In order to measure the "alignment" of two channels, I used the Normalized Cross Correlation (NCC) metric. Images are naturally 2D matrices, but they are flattened to vector form for the following calculation. Given an image $a$ (in vector form) in one channel and an image $b$ (in vector form) in another channel
+                $$ncc = < \frac{a}{||a||_F} , \frac{b}{||b||_F} >$$
+                Where $||\cdot||_F$ is the Frobenius norm, and $<\cdot,\cdot>$ is a dot product. Higher $ncc$ values mean that $a$ and $b$ are more similar and are therefore better aligned.
+                <br>
+                With that metric in mind, the first channel is translated both vertically and horizontally in search for the best alignment.
+            </p>
+        </div>
+        <div class="col-sm-6">
+            <a href="in/settlers.jpg">
+            <img src="in/settlers.jpg" class="img-responsive center-block" width="280px"></a>
+        </div>
+        <h3>Algorithm In Depth</h3>
+        <p>
+            First, the three channels are obtained. Note that the original three-panel image has borders around each panel. So, <strong>7%</strong> of each side of each channel is cropped out. This value was empirically chosen to balance border removal and keeping the image intact.
+            <br><br>
+            Then  the Green channel is aligned to the Blue channel. And then the Red channel is aligned to the Blue channel. For the alignment, NCC was used. While aligning two channels, the assumption is made that two channels are no more than <strong>+/-15%</strong> displaced in translation, relative to the channel size. Empirically, that factor is generous in displacement. Furthermore, we only examine the inner <strong>70%</strong> of the images (without cropping the original any further). This ensures that the plate borders and the physical blemishes of the plate edges do not affect alignment.
+            <br><br>
+            So the search space over channel $A$ and channel $B$ is the double for-loop over displacements [-15%, 15%] vertically and [-15%, 15%] horizontally. (This factor works well for small images, but not for large images. Image pyramids are used to optimize this part.) The translated channel $A$ that receives the best NCC score is returned, as the best alignment to channel $B$.
+            <br><br>
+            Once Green and Blue are aligned, and Red and Blue are aligned, the three colors are stacked into a single image. The outputs are shown below.
+        </p>
+        <h3>Image Pyramids</h3>
+        <p>
+            While searching over +/-15% displacement works for small images, it is inefficient for larger images. (For example, something over the size of 1000x1000 pixels.) To solve this inefficiency, image pyramids are implemented with a factor of 2.
+            <br><br>
+            Image pyramids are created for each channel. Say for channel $A$, the original image size is 2000x2000 pixels. A list of scaled-down images are produced based on that large image. In my implementation, I scale until both height and width are below 200 pixels. So for example, I would end up with a list of scaled images $$[(2000\times2000),(1000\times1000),(500\times500),(250\times250),(125\times125)].$$
+            This way, I can initially limit the alignment search space to the smallest image. The search becomes much faster. After the alignment is found for the smallest image, we search again in the image one step larger. In the one-step-larger search, we can do a rough alignment given by $2 \times $(the previous image's alignment). Note that pyramid has a scale factor of 2. Also, note that due to the rough alignment and the factor of 2, this current roughly aligned image is at most +/-2 pixels away from the optimal alignment to channel $B$ at this level. So at the current level, the search space can be limited to +/-2 pixels in each direction. (Just to be safe, I set the search space to +/-3 pixels. But empirically, all relative displacements are actually within [-2,2] pixels. Except for the Emir picture.)
+            <br><br>
+            After recursively finding the image alignments in the pyramid, the original image is efficiently aligned. This is much better than naively searching over [-15%, 15%] of 2000 pixels: 600x600 pixel search space.
+            <br><br>
+            Again, after alignment, the large original channels are stacked to create the output image.
+        </p>
+
+        <div class="col-sm-8">
+            <h1>Results</h1>
+            <p>
+                The above algorithm worked well in almost every image. In the original 13 staff-provided images, only the Emir image failed to align well.
+                <br><br>
+                And in the 3 additional images downloaded from the Library of Congress, all 3 aligned well.<br>(Plaque, House, and Closet).
+                <br><br>
+                I suspect Emir did not align well due to two reasons: First, the input channels have very different luminances. The bottom channel (Red) is relatively brighter than the others. And second, his clothing is very colorful and textured. In the grayscale top channel (Green), his clothing is white with black plants. In the grayscale middle (Blue), his clothing is overall gray. In the grayscale bottom (Red), his clothing is dark with white plants. This causes NCC to break down as a metric, as it prefers to align whites with whites and blacks with blacks.
+                <br><br>
+                Average runtime per image is less than 20 seconds. Total runtime is about 245.03612 seconds, or about 4 minutes for 16 images.
+                <br><br>
+                Under the assumption Prokudin-Gorskii used pure RGB filters, the RGB output images in the original algorithm has strong yellows and sepia tones. This suggests that while the RGB assumption is decent, Prokudin-Gorskii did not actually have pure RGB filters. Still overall, the images produced by this algorithm turned out pretty well.
+            </p>
+        </div>
+        <div class="col-sm-4">
+            <a href="in/emir.jpg">
+            <img src="in/emir.jpg" class="img-responsive center-block" width="180px"></a>
+        </div>
+        
+        <br><br>
+        <h2>Aligned Images <small>(Images Clickable)</small></h2>
+        <h4>All translational displacements are relative to Blue channel (top image). All of these displacements are in terms of absolute translation in pixels (not relative per level).
+        <br><br>
+        * small input images run on single-scale search (no pyramid processing necessary)<br>
+        <br>Key: <strong>channel</strong>[<em>Vertical</em> pixels, <em>Horizontal</em> pixels]</h4>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><a href="out_basic/cathedral_out.jpg"><strong>* Cathedral</strong>
+                    <img src="out_basic/cathedral_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <center>
+                    <strong>G</strong>[5 2]
+                    <strong>R</strong>[12 3]
+                    <br><strong>Runtime: 0.4774 secs</strong>
+                    </center>
+                </td>
+                <td><a href="out_basic/emir_out.jpg"><strong>Emir</strong>
+                    <img src="out_basic/emir_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <center>
+                    <strong>G</strong>[49 24]
+                    <strong>R</strong>[45 -303]
+                    <br><strong>Runtime: 22.2336 secs</strong>
+                    </center>
+                </td>
+                <td><a href="out_basic/harvesters_out.jpg"><strong>Harvesters</strong>
+                    <img src="out_basic/harvesters_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <center>
+                    <strong>G</strong>[59 16]
+                    <strong>R</strong>[124 13]
+                    <br><strong>Runtime: 20.4103 secs</strong>
+                    </center>
+                </td>
+                <td><a href="out_basic/icon_out.jpg"><strong>Icon</strong>
+                    <img src="out_basic/icon_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <center>
+                    <strong>G</strong>[40 17]
+                    <strong>R</strong>[89 23]
+                    <br><strong>Runtime: 21.7114 secs</strong>
+                    </center>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="out_basic/lady_out.jpg"><strong>Lady</strong>
+                    <img src="out_basic/lady_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <center>
+                    <strong>G</strong>[48 9]
+                    <strong>R</strong>[112 11]
+                    <br><strong>Runtime: 9.9525 secs</strong>
+                    </center>
+                </td>
+                <td><a href="out_basic/monastery_out.jpg"><strong>* Monastery</strong>
+                    <img src="out_basic/monastery_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <center>
+                    <strong>G</strong>[-3 2]
+                    <strong>R</strong>[3 2]
+                    <br><strong>Runtime: 0.5933 secs</strong>
+                    </center>
+                </td>
+                <td><a href="out_basic/nativity_out.jpg"><strong>* Nativity</strong>
+                    <img src="out_basic/nativity_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <center>
+                    <strong>G</strong>[3 1]
+                    <strong>R</strong>[7 0]
+                    <br><strong>Runtime: 0.7132 secs</strong>
+                    </center>
+                </td>
+                <td><a href="out_basic/self_portrait_out.jpg"><strong>Self</strong>
+                    <img src="out_basic/self_portrait_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <center>
+                    <strong>G</strong>[78 29]
+                    <strong>R</strong>[176 37]
+                    <br><strong>Runtime: 19.6527 secs</strong>
+                    </center>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="out_basic/settlers_out.jpg"><strong>* Settlers</strong>
+                    <img src="out_basic/settlers_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <center>
+                    <strong>G</strong>[7 0]
+                    <strong>R</strong>[14 -1]
+                    <br><strong>Runtime: 0.5585 secs</strong>
+                    </center>
+                </td>
+                <td><a href="out_basic/three_generations_out.jpg"><strong>Generations</strong>
+                    <img src="out_basic/three_generations_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <center>
+                    <strong>G</strong>[53 14]
+                    <strong>R</strong>[112 11]
+                    <br><strong>Runtime: 18.7443 secs</strong>
+                    </center>
+                </td>
+                <td><a href="out_basic/train_out.jpg"><strong>Train</strong>
+                    <img src="out_basic/train_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <center>
+                    <strong>G</strong>[42 5]
+                    <strong>R</strong>[87 32]
+                    <br><strong>Runtime: 20.0464 secs</strong>
+                    </center>
+                </td>
+                <td><a href="out_basic/turkmen_out.jpg"><strong>Turkmen</strong>
+                    <img src="out_basic/turkmen_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <center>
+                    <strong>G</strong>[56 21]
+                    <strong>R</strong>[116 28]
+                    <br><strong>Runtime: 21.6017 secs</strong>
+                    </center>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="out_basic/village_out.jpg"><strong>Village</strong>
+                    <img src="out_basic/village_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <center>
+                    <strong>G</strong>[65 12]
+                    <strong>R</strong>[137 22]
+                    <br><strong>Runtime: 21.0091 secs</strong>
+                    </center>
+                </td>
+                <td><a href="out_basic/book_out.jpg"><strong>Plaque</strong>
+                    <img src="out_basic/book_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <center>
+                    <strong>G</strong>[62 19]
+                    <strong>R</strong>[134 26]
+                    <br><strong>Runtime: 19.7466 secs</strong>
+                    </center>
+                </td>
+                <td><a href="out_basic/house_out.jpg"><strong>House</strong>
+                    <img src="out_basic/house_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <center>
+                    <strong>G</strong>[9 19]
+                    <strong>R</strong>[35 38]
+                    <br><strong>Runtime: 18.4928 secs</strong>
+                    </center>
+                </td>
+                <td><a href="out_basic/closet_out.jpg"><strong>Closet</strong>
+                    <img src="out_basic/closet_out.jpg" class="img-responsive center-block" width="240px"></a>
+                    <center>
+                    <strong>G</strong>[36 -18]
+                    <strong>R</strong>[102 -15]
+                    <br><strong>Runtime: 19.07636 secs</strong>
+                    </center>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br><br><br>
+
+        <h1>Going Further <small>(Extra Credit)</small></h1>
+        <h3>Contrast Stretching</h3>
+        <p>
+            I also implemented a function which does Contrast Stretching (AKA Normalization) on any given channel. This Contrast Stretching function takes in 2D matrix of uint16 values, and remaps them such that the visual contrast of the channel is more noticeable.
+            <br><br>
+            Algorithmically, the matrix of uint16 values is first flattened into an array. Then the cumulative histogram of the array is calculated and normalized to [0.0,1.0]. The x-axis of the cumulative histogram has 65536 bins ranging from [0, 65535], and the y-axis is [0.0,1.0]. Define map $T(x)$ to be that cumulative histogram. Then for each pixel in the original channel (each element in the original matrix), the pixel is remapped to $y=T(x)\times65535$.
+            <br><br>
+            This remapping causes the channel to have better contrast. The non-cumulative histogram of the remapped image is uniform, and the cumulative histogram is a straight ramp.
+            <br><br>
+            As an example, here is the Contrast Stretching of the Red channel of Cathedral. Before and after.
+            <div class="col-sm-6">
+            <a href="compare/contrast_before.png">
+            <img src="compare/contrast_before.png" class="img-responsive center-block"></a>
+        <br>
+            </div>
+            <div class="col-sm-6">
+            <a href="compare/contrast_after.png">
+            <img src="compare/contrast_after.png" class="img-responsive center-block"></a>
+        <br>
+            </div>
+        </p>
+        <br>
+        <br>
+
+        <h3>Contrast Stretching on RGB <small>RGB Stretching</small></h3>
+        <p>
+            For the "RGB Stretching" set of images, I applied the Contrast Stretching function above to all three channels BEFORE alignment.
+            <br><br>
+            The alignment on the images turned out to be approximately the same as in the original algorithm. (Except Emir).
+            <br><br>
+            But the most noticeable difference is the change in colors. Overall, the colors seem much more vivid, saturated, and balanced. Additionally, the black-and-white contrast of the images are more noticeable well. On the whole, the set of images is cooler and more blue in comparison to the origin set. A few of the images are unrealistically colored however.
+            <br><br>
+            Under the assumption Prokudin-Gorskii used pure RGB filters, the RGB output images in the original algorithm has strong yellows and sepia tones. This suggests that while the RGB assumption is decent, Prokudin-Gorskii did not actually have pure RGB filters.
+            <br>
+            Due to the yellow biased images under the RGB model -- if the image does not have a good distribution of blue colors, the RGB Stretching function would make the output image too blue. (Blue is the complement to yellow.) Images with sufficient blue in them turn out very well though. See "Self" image vs "Lady" image.
+            <br><br>
+            Specific comparisons below.
+        </p>
+
+        <h3>Contrast Stretching on Value of HSV <small>HSV Value Stretching</small></h3>
+        <p>
+            Seeing that alignment did not change with the RGB Stretching, for the "HSV Value Stretching" set I did processing AFTER alignment. After aligning the images using the original algorithm, I converted the RGB image to HSV space. Note that the Value parameter in HSV corresponds to black-and-white contrast of images. Then I performed Contrast Stretching on that Value parameter. Essentially, this attempts to improve black-and-white contrast without changing the hues in the image. As shown below, this worked well.
+        </p>
+
+        <h3>Contrast Stretching on SV of HSV <small>HSV Saturation and Value Stretching</small></h3>
+        <p>
+            For the "HSV Saturation and Value Stretching" set, I did the same thing as HSV Value Stretching, but I also called the Contrast Stretching function on the Saturation parameter of HSV.
+            <br><br>
+            This change produced more realistically colored images than just Value Stretching. That saturation of colors seem to be better balanced, meaning nothing is too unsaturated or too saturated. But the images also seem less vivid overall.
+        </p>
+
+        <h3>Alignment Over Scale and Rotation <small>5D Transform</small></h3>
+        <p>
+           Based on the technology available to Prokudin-Gorskii, not all three panels in the image plates were perfectly captured at the exact same point in 3D space. As a result, the photos in each panel may be slightly out-of-scale with each other. (I.e. different zoom levels.) Furthermore, when the plates were transfered to a digital format, some of the panel photos may have been slightly rotated.
+           <br><br>
+           To account for this, we increase the dimesionality of the search space to include vertical scaling, horizontal scaling, and rotation, in addition to the original vertical and horizontal translation. For scaling, I assumed channel $A$ is no more than +/-5% scaled than channel $B$ in each direction. For downscaling channel $A$, I padded with gray (0.5) values; and for upscaling $A$, I had to crop out edge pixels. For rotation, I assumed channel $A$ is no more than +/-5 degrees rotated than channel $B$.
+           <br><br>
+           I took advantage of the recursive image pyramid approach to speed up the 5 dimesional search, but the large .tiff images took about half an hour each to process.
+           <br><br>
+           In terms of alignment, the results were worth it though:
+        </p>
+        <div class="col-sm-4">
+        <a href="compare/train_out_basic.jpg"><strong>Train, Original</strong>
+        <img src="compare/train_out_basic.jpg" class="img-responsive center-block"></a><br>Notice that the train's chimney has a band of yellow above it. Also notice the wheels in the original alignment, there is a band of yellow below it. This suggests the Green channel is misaligned in terms of vertical scale, relative to the other two channels.<br><br><br><br>
+        </div>
+        <div class="col-sm-4">
+        <a href="compare/train_out_hsv.jpg"><strong>Train, HSV Saturated and Value Stretched</strong>
+        <img src="compare/train_out_hsv.jpg" class="img-responsive center-block"></a><br>This image included to better see the yellow band above the chimney.<br><br><br><br>
+        </div>
+        <div class="col-sm-4">
+        <a href="compare/train_out_trans.jpg"><strong>Train, 5D Alignment</strong>
+        <img src="compare/train_out_trans.jpg" class="img-responsive center-block"></a><br>The yellow band is gone. The lantern rim is more defined, and the gold leaf is less blurry. This is a better alignment of the Green channel!<br><br><br><br>
+        </div>
+        </div>
+        <br>&nbsp;<br>
+        <div>
+        <h1>&nbsp;</h1>
+        <h1>Final Comparisons <small>(Images Clickable)</small></h1>
+        <p>
+            - Overall, HSV Value Stretching provides a better image than the original by boosting black-and-white contrast. HSV Saturation stretching provides a good color boost and balancing to the original, but can sometimes oversaturate the color to being unrealistic.
+            <br>
+            - RGB Stretching improves color balance, saturation, and contrast when the original images has sufficiently even amounts of yellows and blues. But if there is not enough natural blue range, the resulting image takes on a blue and purple tint.
+            <br>
+            - 5D alignment provides better image quality and alignment in most cases, but the difference is not as apparent as the color space operations.
+        </p>
+        <h4>Channels relative to Blue.
+        <br><br>Key: <strong>channel</strong>[<em>Vertical Translation</em> pixels, <em>Horizontal Translation</em> pixels, (<em>Vertical Scale</em>, <em>Horizontal Scale</em>, <em>Rotational Degrees</em>)]</h4>
+        <table class="table table-striped table-responsive">
+            <thead>
+            <tr>
+                <th class="col-md-5ths"><h3>Original Algorithm</h3></th>
+                <th class="col-md-5ths"><h3>RGB Stretching</h3></th>
+                <th class="col-md-5ths"><h3>HSV Value Stretching</h3></th>
+                <th class="col-md-5ths"><h3>HSV Saturation and Value Stretching</h3></th>
+                <th class="col-md-5ths"><h3>5D Transform</h3></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><a href="out_basic/cathedral_out.jpg"><strong>Cathedral</strong>
+                    <img src="out_basic/cathedral_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[5 2]
+                    <strong>R</strong>[12 3]
+                    </center>
+                </td>
+                <td><a href="out_rgb_contrast/cathedral_out.jpg"><strong>Cathedral</strong>
+                    <img src="out_rgb_contrast/cathedral_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[5 2]
+                    <strong>R</strong>[12 3]
+                    <br>Better contrast than original, but unrealistic blues on the hillside.
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/no_s_cathedral_out.jpg"><strong>Cathedral</strong>
+                    <img src="out_hsv_contrast/no_s_cathedral_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[5 2]
+                    <strong>R</strong>[12 3]
+                    <br>Better contrast than original.
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/cathedral_out.jpg"><strong>Cathedral</strong>
+                    <img src="out_hsv_contrast/cathedral_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[5 2]
+                    <strong>R</strong>[12 3]
+                    <br>Better contrast than original and more vivid colors.
+                    </center>
+                </td>
+                <td><a href="out_transform/cathedral_out.jpg"><strong>Cathedral</strong>
+                    <img src="out_transform/cathedral_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[4 2 1.0125 1.0 0.0375]<br>
+                    <strong>R</strong>[3 -1 1.0375 1.0125 0.0125]
+                    </center>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><a href="out_basic/emir_out.jpg"><strong>Emir</strong>
+                    <img src="out_basic/emir_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[49 24]
+                    <strong>R</strong>[45 -303]
+                    <br>"I'm too blue."
+                    </center>
+                </td>
+                <td><a href="out_rgb_contrast/emir_out.jpg"><strong>Emir</strong>
+                    <img src="out_rgb_contrast/emir_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[49 24]
+                    <strong>R</strong>[45 -303]
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/no_s_emir_out.jpg"><strong>Emir</strong>
+                    <img src="out_hsv_contrast/no_s_emir_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[49 24]
+                    <strong>R</strong>[45 -303]
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/emir_out.jpg"><strong>Emir</strong>
+                    <img src="out_hsv_contrast/emir_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[49 24]
+                    <strong>R</strong>[45 -303]
+                    </center>
+                </td>
+                <td><a href="out_transform/emir_out.jpg"><strong>Emir</strong>
+                    <img src="out_transform/emir_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[8 11 1.01 1.0045 -0.03458]<br>
+                    <strong>R</strong>[-13 -175 0.9429 0.9429 -0.0470]
+                    </center>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><a href="out_basic/harvesters_out.jpg"><strong>Harvesters</strong>
+                    <img src="out_basic/harvesters_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[59 16]
+                    <strong>R</strong>[124 13]
+                    <br>Honestly, the lady who moved during the photo looks like a ghost and creeps me out a little.
+                    </center>
+                </td>
+                <td><a href="out_rgb_contrast/harvesters_out.jpg"><strong>Harvesters</strong>
+                    <img src="out_rgb_contrast/harvesters_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[59 16]
+                    <strong>R</strong>[124 13]
+                    <br>More balanced coloring. Less sepia tones, but plants are bluer than in real life.
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/no_s_harvesters_out.jpg"><strong>Harvesters</strong>
+                    <img src="out_hsv_contrast/no_s_harvesters_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[59 16]
+                    <strong>R</strong>[124 13]
+                    <br>Better contrast with fairly good colors.
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/harvesters_out.jpg"><strong>Harvesters</strong>
+                    <img src="out_hsv_contrast/harvesters_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[59 16]
+                    <strong>R</strong>[124 13]
+                    <br>More vivid colors than previous image.
+                    </center>
+                </td>
+                <td><a href="out_transform/harvesters_out.jpg"><strong>Harvesters</strong>
+                    <img src="out_transform/harvesters_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[47 3 1.0060 1.0045 -0.0570]<br>
+                    <strong>R</strong>[116 9 1.0020 0.9991 -0.0570]
+                    <br>Slightly worse alignment than the original. The error could potentially be due to the high frequencies in the image, and the noise caused by the windy day. Notice the tall grass in the foreground.
+                    </center>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><a href="out_basic/icon_out.jpg"><strong>Icon</strong>
+                    <img src="out_basic/icon_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[40 17]
+                    <strong>R</strong>[89 23]
+                    <br> Very gold and yellow. Pretty good alignment to begin with.
+                    </center>
+                </td>
+                <td><a href="out_rgb_contrast/icon_out.jpg"><strong>Icon</strong>
+                    <img src="out_rgb_contrast/icon_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[40 17]
+                    <strong>R</strong>[89 23]
+                    <br>As opposed to the above images, located in landscapes outside, this image has a more actual blue colors. This prevents the RGB scaling from becoming overly blue like in the above images. The fence and the blue dome has an appealing teal to it. The red and gold are strong without being overbearing.
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/no_s_icon_out.jpg"><strong>Icon</strong>
+                    <img src="out_hsv_contrast/no_s_icon_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[40 17]
+                    <strong>R</strong>[89 23]
+                    <br>More contrast, the shadows helps bring out the gold coloring.
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/icon_out.jpg"><strong>Icon</strong>
+                    <img src="out_hsv_contrast/icon_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[40 17]
+                    <strong>R</strong>[89 23]
+                    <br>Good contrast, with gold and red very saturated and strong. Weaker blues.
+                    </center>
+                </td>
+                <td><a href="out_transform/icon_out.jpg"><strong>Icon</strong>
+                    <img src="out_transform/icon_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[33 16 1.0035 1.0029 0.0116]<br>
+                    <strong>R</strong>[84 22 0.9991 1.0029 -0.0070]
+                    <br>About the same quality as original, slightly rotated.
+                    </center>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><a href="out_basic/lady_out.jpg"><strong>Lady</strong>
+                    <img src="out_basic/lady_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[48 9]
+                    <strong>R</strong>[112 11]
+                    </center>
+                </td>
+                <td><a href="out_rgb_contrast/lady_out.jpg"><strong>Lady</strong>
+                    <img src="out_rgb_contrast/lady_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[48 9]
+                    <strong>R</strong>[112 11]
+                    <br>Much better coloring than original. I suspect the blue dress helps the RGB balance. More natural skin color than all the others.
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/no_s_lady_out.jpg"><strong>Lady</strong>
+                    <img src="out_hsv_contrast/no_s_lady_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[48 9]
+                    <strong>R</strong>[112 11]
+                    <br>Decent image, although a bit gray overall.
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/lady_out.jpg"><strong>Lady</strong>
+                    <img src="out_hsv_contrast/lady_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[48 9]
+                    <strong>R</strong>[112 11]
+                    <br>Medical attention recommended.
+                    </center>
+                </td>
+                <td><a href="out_transform/lady_out.jpg"><strong>Lady</strong>
+                    <img src="out_transform/lady_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[0 11 1.0106 0.9970 -0.0345]<br>
+                    <strong>R</strong>[45 3 1.0195 0.9991 0.0220]
+                    </center>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><a href="out_basic/monastery_out.jpg"><strong>Monastery</strong>
+                    <img src="out_basic/monastery_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[-3 2]
+                    <strong>R</strong>[3 2]
+                    </center>
+                </td>
+                <td><a href="out_rgb_contrast/monastery_out.jpg"><strong>Monastery</strong>
+                    <img src="out_rgb_contrast/monastery_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[-3 2]
+                    <strong>R</strong>[3 2]
+                    <br>Very vivid colors across the image. More pleasant to look at than the other images.
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/no_s_monastery_out.jpg"><strong>Monastery</strong>
+                    <img src="out_hsv_contrast/no_s_monastery_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[-3 2]
+                    <strong>R</strong>[3 2]
+                    <br>A little too gray.
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/monastery_out.jpg"><strong>Monastery</strong>
+                    <img src="out_hsv_contrast/monastery_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[-3 2]
+                    <strong>R</strong>[3 2]
+                    </center>
+                </td>
+                <td><a href="out_transform/monastery_out.jpg"><strong>Monastery</strong>
+                    <img src="out_transform/monastery_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[1 2 1.0 1.0 -0.0375]<br>
+                    <strong>R</strong>[1 0 1.0 1.0 0.0375]
+                    </center>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><a href="out_basic/nativity_out.jpg"><strong>Nativity</strong>
+                    <img src="out_basic/nativity_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[3 1]
+                    <strong>R</strong>[7 0]
+                    </center>
+                </td>
+                <td><a href="out_rgb_contrast/nativity_out.jpg"><strong>Nativity</strong>
+                    <img src="out_rgb_contrast/nativity_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[3 1]
+                    <strong>R</strong>[7 0]
+                    <br>More neutral white colors, better than the others.
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/no_s_nativity_out.jpg"><strong>Nativity</strong>
+                    <img src="out_hsv_contrast/no_s_nativity_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[3 1]
+                    <strong>R</strong>[7 0]
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/nativity_out.jpg"><strong>Nativity</strong>
+                    <img src="out_hsv_contrast/nativity_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[3 1]
+                    <strong>R</strong>[7 0]
+                    <br>Very saturated colors. It almost looks like the building is outlined.
+                    </center>
+                </td>
+                <td><a href="out_transform/nativity_out.jpg"><strong>Nativity</strong>
+                    <img src="out_transform/nativity_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[0 -1 1.0125 1.0 -0.0375]<br>
+                    <strong>R</strong>[3 -1 1.0125 1.0062 -0.0375]
+                    </center>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><a href="out_basic/self_portrait_out.jpg"><strong>Self</strong>
+                    <img src="out_basic/self_portrait_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[78 29]
+                    <strong>R</strong>[176 37]
+                    </center>
+                </td>
+                <td><a href="out_rgb_contrast/self_portrait_out.jpg"><strong>Self</strong>
+                    <img src="out_rgb_contrast/self_portrait_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[78 29]
+                    <strong>R</strong>[176 37]
+                    <br>The blue is too strong once again. Notice the bottom left corner of the river. The water is unrealistically purple.
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/no_s_self_portrait_out.jpg"><strong>Self</strong>
+                    <img src="out_hsv_contrast/no_s_self_portrait_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[78 29]
+                    <strong>R</strong>[176 37]
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/self_portrait_out.jpg"><strong>Self</strong>
+                    <img src="out_hsv_contrast/self_portrait_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[78 29]
+                    <strong>R</strong>[176 37]
+                    <br> Good coloring and contrast overall.
+                    </center>
+                </td>
+                <td><a href="out_transform/self_portrait_out.jpg"><strong>Self</strong>
+                    <img src="out_transform/self_portrait_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[53 23 1.0054 0.9991 -0.0539]<br>
+                    <strong>R</strong>[171 31 0.9991 0.9991 -0.0570]
+                    <br>The center of the image appears very in focus. Colors and alignment in that region is good. But, the edges of the picture are out of focus. Notice the alignment differences between the rock and the branches. The misalignment on the edges of the image give the illusion of depth-of-field. I suspect the high frequencies in the branches fooled the algorithm into misalignment.
+                    </center>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><a href="out_basic/settlers_out.jpg"><strong>Settlers</strong>
+                    <img src="out_basic/settlers_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[7 0]
+                    <strong>R</strong>[14 -1]
+                    </center>
+                </td>
+                <td><a href="out_rgb_contrast/settlers_out.jpg"><strong>Settlers</strong>
+                    <img src="out_rgb_contrast/settlers_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[7 0]
+                    <strong>R</strong>[14 -1]
+                    <br>Good color saturation and contrast. May be a little too blue once again, as there is not much blue in the background.
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/no_s_settlers_out.jpg"><strong>Settlers</strong>
+                    <img src="out_hsv_contrast/no_s_settlers_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[7 0]
+                    <strong>R</strong>[14 -1]
+                    <br>Good contrast with already decent colors.
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/settlers_out.jpg"><strong>Settlers</strong>
+                    <img src="out_hsv_contrast/settlers_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[7 0]
+                    <strong>R</strong>[14 -1]
+                    <br>Good contrast, but overcompensates the color too much. Notice the purple shadow on the upper left corner.
+                    </center>
+                </td>
+                <td><a href="out_transform/settlers_out.jpg"><strong>Settlers</strong>
+                    <img src="out_transform/settlers_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[3 -1 1.0062 1.0062 -0.0375]<br>
+                    <strong>R</strong>[9 -2 1.0125 1.0062 0.0]
+                    </center>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><a href="out_basic/three_generations_out.jpg"><strong>Generations</strong>
+                    <img src="out_basic/three_generations_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[53 14]
+                    <strong>R</strong>[112 11]
+                    </center>
+                </td>
+                <td><a href="out_rgb_contrast/three_generations_out.jpg"><strong>Generations</strong>
+                    <img src="out_rgb_contrast/three_generations_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[53 14]
+                    <strong>R</strong>[112 11]
+                    <br>Good color balance, owing to the blue background.
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/no_s_three_generations_out.jpg"><strong>Generations</strong>
+                    <img src="out_hsv_contrast/no_s_three_generations_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[53 14]
+                    <strong>R</strong>[112 11]
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/three_generations_out.jpg"><strong>Generations</strong>
+                    <img src="out_hsv_contrast/three_generations_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[53 14]
+                    <strong>R</strong>[112 11]
+                    <br>The blue is too saturated in this case.
+                    </center>
+                </td>
+                <td><a href="out_transform/three_generations_out.jpg"><strong>Generations</strong>
+                    <img src="out_transform/three_generations_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[44 7 1.0035 1.0035 -0.0570]<br>
+                    <strong>R</strong>[109 6 1.0029 0.9991 0.0179]
+                    <br>Better alignment of all filters. Notice the woman's hat - it no longer has a yellow outline. Notice the left man's hat, the green and yellow outlines are removed. The same man's waist belt no longer has a blue outline. The chromatic aberation on the left man's big medal is reduced. It is originally circled by a rainbow of red, purple, blue, green, yellow. Now it is only red and cyan offset. The vertical gold belt has red borders removed as well.
+                    </center>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><a href="out_basic/train_out.jpg"><strong>Train</strong>
+                    <img src="out_basic/train_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[42 5]
+                    <strong>R</strong>[87 32]
+                    <br>A bright image of a train.
+                    </center>
+                </td>
+                <td><a href="out_rgb_contrast/train_out.jpg"><strong>Train</strong>
+                    <img src="out_rgb_contrast/train_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[42 5]
+                    <strong>R</strong>[87 32]
+                    <br>The brightness of the image is toned down. The colors here makes the image look like it was taken at sunrise or sunset rather than near noon. The shadows in the image show that it is actually around noon though, so this coloring is unrealistic.
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/no_s_train_out.jpg"><strong>Train</strong>
+                    <img src="out_hsv_contrast/no_s_train_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[42 5]
+                    <strong>R</strong>[87 32]
+                    <br>Same comment as RGB contrast.
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/train_out.jpg"><strong>Train</strong>
+                    <img src="out_hsv_contrast/train_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[42 5]
+                    <strong>R</strong>[87 32]
+                    <br>Too blue and dark for noon.
+                    </center>
+                </td>
+                <td><a href="out_transform/train_out.jpg"><strong>Train</strong>
+                    <img src="out_transform/train_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[35 -4 1.0035 1.0002 -0.0570]<br>
+                    <strong>R</strong>[9 15 1.0035 1.007 -0.0570]
+                    <br>Notice the chimney: The yellow band is gone. The lantern rim is more defined, and the gold leaf is less blurry. The train tracks on the bottom right have also improved, reducing yellow and magenta borders.
+                    </center>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><a href="out_basic/turkmen_out.jpg"><strong>Turkmen</strong>
+                    <img src="out_basic/turkmen_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[56 21]
+                    <strong>R</strong>[116 28]
+                    </center>
+                </td>
+                <td><a href="out_rgb_contrast/turkmen_out.jpg"><strong>Turkmen</strong>
+                    <img src="out_rgb_contrast/turkmen_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[56 21]
+                    <strong>R</strong>[116 28]
+                    <br>Again, the lack of blues make this contrast stretched image appear too blue.
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/no_s_turkmen_out.jpg"><strong>Turkmen</strong>
+                    <img src="out_hsv_contrast/no_s_turkmen_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[56 21]
+                    <strong>R</strong>[116 28]
+                    <br>Good contrast, but very gray.
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/turkmen_out.jpg"><strong>Turkmen</strong>
+                    <img src="out_hsv_contrast/turkmen_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[56 21]
+                    <strong>R</strong>[116 28]
+                    <br>Good contrast and color saturation.
+                    </center>
+                </td>
+                <td><a href="out_transform/turkmen_out.jpg"><strong>Turkmen</strong>
+                    <img src="out_transform/turkmen_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[54 13 1.0029 1.0016 0.0179]<br>
+                    <strong>R</strong>[116 24 1.0014 0.9991 -0.0508]
+                    <br>Improvement in the coloring of the rope that the man is holding.
+                    </center>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><a href="out_basic/village_out.jpg"><strong>Village</strong>
+                    <img src="out_basic/village_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[65 12]
+                    <strong>R</strong>[137 22]
+                    </center>
+                </td>
+                <td><a href="out_rgb_contrast/village_out.jpg"><strong>Village</strong>
+                    <img src="out_rgb_contrast/village_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[65 12]
+                    <strong>R</strong>[137 22]
+                    <br>More vivd colors compared to the original. Hover, parts of the sand on the bottom of the image appear purple and unrealistic.
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/no_s_village_out.jpg"><strong>Village</strong>
+                    <img src="out_hsv_contrast/no_s_village_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[65 12]
+                    <strong>R</strong>[137 22]
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/village_out.jpg"><strong>Village</strong>
+                    <img src="out_hsv_contrast/village_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[65 12]
+                    <strong>R</strong>[137 22]
+                    <br>Very saturated colors, making the photo appear unrealistic. Even stronger blue tones than the RGB Stretched image.
+                    </center>
+                </td>
+                <td><a href="out_transform/village_out.jpg"><strong>Village</strong>
+                    <img src="out_transform/village_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[53 7 1.0239 0.9991 -0.0356]<br>
+                    <strong>R</strong>[137 21 1.0006 1.0029 -0.0345]
+                    </center>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><a href="out_basic/book_out.jpg"><strong>Plaque</strong>
+                    <img src="out_basic/book_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[62 19]
+                    <strong>R</strong>[134 26]
+                    <br>Image is biased towards blue instead of yellow.
+                    </center>
+                </td>
+                <td><a href="out_rgb_contrast/book_out.jpg"><strong>Plaque</strong>
+                    <img src="out_rgb_contrast/book_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[62 19]
+                    <strong>R</strong>[134 26]
+                    <br>Very well balanced colors with good saturation. Removes the blue tint.
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/no_s_book_out.jpg"><strong>Plaque</strong>
+                    <img src="out_hsv_contrast/no_s_book_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[62 19]
+                    <strong>R</strong>[134 26]
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/book_out.jpg"><strong>Plaque</strong>
+                    <img src="out_hsv_contrast/book_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[62 19]
+                    <strong>R</strong>[134 26]
+                    <br>Unpleasantly blue.
+                    </center>
+                </td>
+                <td><a href="out_transform/book_out.jpg"><strong>Plaque</strong>
+                    <img src="out_transform/book_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[48 11 1.0054 1.0035 -0.0345]<br>
+                    <strong>R</strong>[103 7 1.0054 1.0070 -0.0377]
+                    </center>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><a href="out_basic/house_out.jpg"><strong>House</strong>
+                    <img src="out_basic/house_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[9 19]
+                    <strong>R</strong>[35 38]
+                    <br>Looks like a picture from the 70s.
+                    </center>
+                </td>
+                <td><a href="out_rgb_contrast/house_out.jpg"><strong>House</strong>
+                    <img src="out_rgb_contrast/house_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[9 19]
+                    <strong>R</strong>[35 38]
+                    <br>Better contrast and greens, but a little on the blue side.
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/no_s_house_out.jpg"><strong>House</strong>
+                    <img src="out_hsv_contrast/no_s_house_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[9 19]
+                    <strong>R</strong>[35 38]
+                    <br>A little gray.
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/house_out.jpg"><strong>House</strong>
+                    <img src="out_hsv_contrast/house_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[9 19]
+                    <strong>R</strong>[35 38]
+                    <br>Very saturated colors in addition to contrast. This makes the wood look damp.
+                    </center>
+                </td>
+                <td><a href="out_transform/house_out.jpg"><strong>House</strong>
+                    <img src="out_transform/house_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[-2 4 1.0045 1.0070 0.02416]<br>
+                    <strong>R</strong>[28 23 1.0035 1.0070 -0.0320]
+                    <br>Better alignment and sharpness on the house edges. Notice the roof edges, doorway, and windows on the bottom left corner.
+                    </center>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><a href="out_basic/closet_out.jpg"><strong>Closet</strong>
+                    <img src="out_basic/closet_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[36 -18]
+                    <strong>R</strong>[102 -15]
+                    <br>Already a good image, gives the impression that it was taken indoors with a fairly modern camera. Decent colors.
+                    </center>
+                </td>
+                <td><a href="out_rgb_contrast/closet_out.jpg"><strong>Closet</strong>
+                    <img src="out_rgb_contrast/closet_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[36 -18]
+                    <strong>R</strong>[102 -15]
+                    <br>Very bright and washed out colors, likely due to overcompensating for blues once again.
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/no_s_closet_out.jpg"><strong>Closet</strong>
+                    <img src="out_hsv_contrast/no_s_closet_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[36 -18]
+                    <strong>R</strong>[102 -15]
+                    <br>Fairly realstic shadows and contrast for an indoor image.
+                    </center>
+                </td>
+                <td><a href="out_hsv_contrast/closet_out.jpg"><strong>Closet</strong>
+                    <img src="out_hsv_contrast/closet_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[36 -18]
+                    <strong>R</strong>[102 -15]
+                    <br>Good contrast and saturation. Saturation borderlines on being unrealistic, but is still pretty good.
+                    </center>
+                </td>
+                <td><a href="out_transform/closet_out.jpg"><strong>Closet</strong>
+                    <img src="out_transform/closet_out.jpg" class="img-responsive center-block" width="200px"></a>
+                    <center>
+                    <strong>G</strong>[29 -24 0.9991 1.0035 -0.0570]<br>
+                    <strong>R</strong>[100 -16 1.0029 1.0029 -0.0445]
+                    </center>
+                    <br>About the same as the original, which was already fairly well aligned.
+                </td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+</div>
+</body>
