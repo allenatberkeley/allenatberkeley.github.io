@@ -20,9 +20,9 @@ COUNTER=$[COUNTER + 1]
 echo $COUNTER > $VERSION
 
 # debug
-cp pageheader-orig.html pageheader.html
-HEADER="pageheader.html"
-echo "Debug Version:" >> $HEADER
+cp index-orig.html index.html
+HEADER="index.html"
+echo "Version:" >> $HEADER
 echo $COUNTER >> $HEADER
 
 echo $COUNTER
