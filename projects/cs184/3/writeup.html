@@ -144,9 +144,6 @@
         <p align="middle"><pre align="middle">return(s * bsdf_val * w_in.z) / (pdf * (1 - roulette))</pre></p>
         <p>The incoming radiance s in converted to the outgoing radiance estimator (to be returned) by scaling it with the BSDF and the cosine factor (as in Part 3). And then it is divided by the BSDF's probability density function (to remove bias), and divided again by (1 - Russian roulette termination probability). The (1 - roulette) is the chance that the ray did not get terminated.</p>
         <p>This is what I have implemented, and I have followed the spec as closely as I could tell. However, my end result (the bunny below) still had some visual glitches and bugs. I have hunted for this bug for many hours, but still could not resolve it.</p>
-        <br>
-        <br>
-        <p>I did not have enough time to render each step to full quality, as each picture here takes over one hour to produce on an old Macbook Air. The lower ones would take multiple hours per full quality render.</p>
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/4-intersectionerror.png"/>
             <figcaption class="figure-caption center-block">An incorrect implementation of indirect lighting.<br><br></figcaption>
@@ -157,6 +154,9 @@
             <figcaption class="figure-caption center-block">My (previously final) rendering for this part: The bunny with both direct and indirect lighting. (-s 64 -l 16 -m 5). There are some obvious bugs and edge cases that were not correctly handled for this image. However, along the ceiling, one can see a mixture of red and blue pixels which resulted from indirect lighting from the two side walls. There is a similar mixing of red and blue pixels along the floor. Additionally, one can see that the shadow on the left side of the bunny has an appropriate red tint and the shadow on the right side of the bunny has an appropriate blue tint. Unfortunately, some bugs include: the choppy triangle on the left side of the floor; the bunny itself not having much indirect lighting except for a few places around the feet and tail; the left wall have triangles of two different red shades; and a seam is visible on the ceiling.<br><br></figcaption>
         </figure>
         
+        <br>
+        <br>
+        <p>I did not have enough time to render each step to full quality, as each picture here takes over one hour to produce on an old Macbook Air. The lower ones would take multiple hours per full quality render.</p>
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/hunbun2.png"/>
             <figcaption class="figure-caption center-block">My final good rendering for this part. The bugs noted in the previous image's captioned are fixed here. There are no more choppy triangles; the bunny itself does have indirect lighting from the floor and walls (and ceiling); the box's surfaces have smooth transitions between triangles; the back wall experiences indirect lighting as well.<br><br></figcaption>
