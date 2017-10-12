@@ -22,7 +22,7 @@ echo $COUNTER > $VERSION
 # debug
 cp index-orig.html index.html
 HEADER="index.html"
-echo "Version:" >> $HEADER
+#echo "Version:" >> $HEADER
 echo $COUNTER >> $HEADER
 
 echo $COUNTER
