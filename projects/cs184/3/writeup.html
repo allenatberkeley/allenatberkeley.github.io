@@ -144,7 +144,9 @@
         <p align="middle"><pre align="middle">return(s * bsdf_val * w_in.z) / (pdf * (1 - roulette))</pre></p>
         <p>The incoming radiance s in converted to the outgoing radiance estimator (to be returned) by scaling it with the BSDF and the cosine factor (as in Part 3). And then it is divided by the BSDF's probability density function (to remove bias), and divided again by (1 - Russian roulette termination probability). The (1 - roulette) is the chance that the ray did not get terminated.</p>
         <p>This is what I have implemented, and I have followed the spec as closely as I could tell. However, my end result (the bunny below) still had some visual glitches and bugs. I have hunted for this bug for many hours, but still could not resolve it.</p>
-        <p><b>Last minute update:</b> I have only managed to resolve the bug at ~11:30 pm. (3/31). And unfortunately do not have enough time to render all of the deliverables.</p>
+        <br>
+        <br>
+        <p>I did not have enough time to render each step to full quality, as each picture here takes over one hour to produce on an old Macbook Air. The lower ones would take multiple hours per full quality render.</p>
         <figure class="figure">
             <img class="img-responsive img-fluid center-block" src="images/4-intersectionerror.png"/>
             <figcaption class="figure-caption center-block">An incorrect implementation of indirect lighting.<br><br></figcaption>
