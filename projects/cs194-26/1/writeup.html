@@ -76,7 +76,8 @@
         <h1>CS194-26 | Colorizing the Prokudin-Gorskii Collection<br>
         <small>Allen Zeng, CS194-26-aec</small><br>
         </h1>
-        <h2><small>Large outputs rescaled to less than 1500px height due to 25MB limit.</small></h2>
+
+        <h2><small>Large outputs rescaled to less than 1500px height for display on website.</small></h2>
                     <!-- <a href="out_basic/cathedral_out.jpg">
                     <img src="out_basic/cathedral_out.jpg" class="img-responsive center-block" width="240px"></a>
                     <a href="out_basic/emir_out.jpg">
@@ -109,6 +110,7 @@
                     <img src="out_basic/house_out.jpg" class="img-responsive center-block" width="240px"></a>
                     <a href="out_basic/closet_out.jpg">
                     <img src="out_basic/closet_out.jpg" class="img-responsive center-block" width="240px"></a> -->
+
         <div class="col-sm-6">
             <h2>Premise</h2>
             <p>
@@ -123,13 +125,21 @@
                 $$ncc = < \frac{a}{||a||_F} , \frac{b}{||b||_F} >$$
                 Where $||\cdot||_F$ is the Frobenius norm, and $<\cdot,\cdot>$ is a dot product. Higher $ncc$ values mean that $a$ and $b$ are more similar and are therefore better aligned.
                 <br>
-                With that metric in mind, the first channel is translated both vertically and horizontally in search for the best alignment.
+                With that metric in mind, the first channel is translated both vertically and horizontally in search for the best alignment with the second. And then the second channel is aligned with the third. The three channels are stacked to create the colored output image.
             </p>
         </div>
         <div class="col-sm-6">
             <a href="in/settlers.jpg">
             <img src="in/settlers.jpg" class="img-responsive center-block" width="280px"></a>
+            <br>
+            <br>
         </div>
+
+
+        <img src="out_hsv_contrast/no_s_settlers_out.jpg" class="img-responsive center-block">
+
+
+        <div class="col-lg-12">
         <h3>Algorithm In Depth</h3>
         <p>
             First, the three channels are obtained. Note that the original three-panel image has borders around each panel. So, <strong>7%</strong> of each side of each channel is cropped out. This value was empirically chosen to balance border removal and keeping the image intact.
@@ -151,6 +161,7 @@
             <br><br>
             Again, after alignment, the large original channels are stacked to create the output image.
         </p>
+        </div>
 
         <div class="col-sm-8">
             <h1>Results</h1>
@@ -169,6 +180,9 @@
         <div class="col-sm-4">
             <a href="in/emir.jpg">
             <img src="in/emir.jpg" class="img-responsive center-block" width="180px"></a>
+            <br>
+            <br>
+            <br>
         </div>
         
         <br><br>
